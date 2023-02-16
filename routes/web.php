@@ -26,4 +26,5 @@ Route::resource('Qcmliste', QcmController::class);
 Route::resource('Solution', listeSolutionController::class);
 Route::resource('etudiant', EtudiantController::class);
 Route::get('/Etudiant/createEtud/{id}','App\Http\Controllers\EtudiantController@CreateEtudiant')->name('Etud.Create');
-Route::get('/Etudiant/index','App\Http\Controllers\PDFController@index')->name('PDF');
+Route::get('/import_excel', 'App\Http\Controllers\ImportExcelController@index');
+Route::post('/import_excel/import', 'App\Http\Controllers\ImportExcelController@import');
