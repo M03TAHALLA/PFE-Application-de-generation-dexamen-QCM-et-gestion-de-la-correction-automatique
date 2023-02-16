@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\listeSolutionController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QcmController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,5 +28,4 @@ Route::resource('Qcmliste', QcmController::class);
 Route::resource('Solution', listeSolutionController::class);
 Route::resource('etudiant', EtudiantController::class);
 Route::get('/Etudiant/createEtud/{id}','App\Http\Controllers\EtudiantController@CreateEtudiant')->name('Etud.Create');
-Route::get('/import_excel', 'App\Http\Controllers\ImportExcelController@index');
-Route::post('/import_excel/import', 'App\Http\Controllers\ImportExcelController@import');
+Route::get('/Etudinat/pdf', 'App\Http\Controllers\listeSolutionController@generatePDF')->name('PDFetudiants');

@@ -17,4 +17,5 @@ class solution extends Model
         'D',
         'E',
     ];
+    protected $guarded=[];
 }

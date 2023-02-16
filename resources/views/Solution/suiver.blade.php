@@ -212,6 +212,7 @@ $result = $connect->query($query);
 				  <center>
 				  <button style="margin-top: 5%"  type="submit">STORE</button>
 				  <a href="{{ route('etudiant.show', $listeqcm->id) }}" style="border: solid 1px rgb(255, 255, 255) ; background-color :rgb(0, 0, 0); font-size:25px;color:white;margin-left:90%;border-radius: 0.3em;width:15%" class="button2"> Etudiant's</a>
+				  <a href="{{ route('PDFetudiants',$listeqcm->id) }}" style="border: solid 1px rgb(255, 255, 255) ; background-color :rgb(0, 0, 0); font-size:25px;color:white;margin-left:90%;border-radius: 0.3em;width:15%" class="button2"> Etudiant's</a>
 				</center>
 			</div>
 			<form>

@@ -140,5 +140,7 @@ class EtudiantController extends Controller
         $deleteEtud->delete();
         return redirect()->route('etudiant.show',$deleteEtud->idEtud);
     }
+
+
   
 }
