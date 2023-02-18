@@ -212,6 +212,7 @@
 <body>
   <div class="container">
     <a href="{{ route('Etud.Create',$id) }}" class="button2">+ Ajouter Etudiant</a>
+    <a href="{{ route('Etud.PDF', $id) }}" style="border: solid 1px rgb(255, 255, 255) ; background-color :rgb(0, 0, 0); font-size:25px;color:white;margin-left:90%;border-radius: 0.3em;width:15%" class="button2"> Etudiant's</a>
     <h2>Etudiant's <small>De Votre Qcm</small></h2>
     <form class="form">
       <button>

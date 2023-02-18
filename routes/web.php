@@ -28,4 +28,4 @@ Route::resource('Qcmliste', QcmController::class);
 Route::resource('Solution', listeSolutionController::class);
 Route::resource('etudiant', EtudiantController::class);
 Route::get('/Etudiant/createEtud/{id}','App\Http\Controllers\EtudiantController@CreateEtudiant')->name('Etud.Create');
-Route::get('/Etudinat/pdf', 'App\Http\Controllers\listeSolutionController@generatePDF')->name('PDFetudiants');
+Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->name('Etud.PDF');

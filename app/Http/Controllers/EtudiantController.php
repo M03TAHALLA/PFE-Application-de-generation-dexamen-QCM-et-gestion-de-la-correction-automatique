@@ -7,6 +7,8 @@ use App\Models\Qcmliste;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use mysqli;
+use TCPDF;
 
 class EtudiantController extends Controller
 {
@@ -15,10 +17,267 @@ class EtudiantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-    
+    public function index(){
+
     }
+    public function PDF($id)
+    {
+        // Step 1: Establish database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "qcmdb";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Step 2: Construct and execute SQL query
+$sql = "SELECT * FROM etudiants WHERE idEtud =".$id."";
+$result = $conn->query($sql);
+
+// Step 3: Retrieve query results and store in a variable
+$etudiant_data = "";
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $etudiant_data .= $row["Nom"]." ";
+        $etudiant_data .= $row["Prenom"];
+        // add more fields as needed
+    }
+}
+        $pdf = new TCPDF();
+        
+        // set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('Author Name');
+    $pdf->SetTitle('Etudinats');
+    $pdf->SetSubject('TCPDF Tutorial');
+    $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+    $pdf->AddPage();
+    // set color for background
+    $pdf->SetFillColor(255, 255, 255);
+    $pdf->SetLineWidth(0.25);
+    $pdf->Rect(9.025, 6.1, 187.5, 8.45, 'DF');
+
+    $pdf->Rect(26.6,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',5);
+    $pdf->Text(26.7, 7.5, 'A');
+
+    $pdf->Rect(47,7.4, 3.35,2.1 , 'DF');
+    $pdf->setFont('helvetica','',5);
+    $pdf->Text(47.1, 7.5, 'B');
+
+    $pdf->Rect(67.1,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',5);
+    $pdf->Text(67.3, 7.5, 'C');
+
+    $pdf->Rect(87.5,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',5);
+    $pdf->Text(87.6, 7.5, 'D');
+    
+    $pdf->Rect(117.9,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',5);
+    $pdf->Text(117.9, 7.5, 'D');
+
+    $pdf->Rect(138.3,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',5);
+    $pdf->Text(138.3, 7.5, 'C');
+      
+    $pdf->Rect(158.4,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',4.9);
+    $pdf->Text(158.5, 7.5, 'B');
+
+    $pdf->Rect(178.8,7.4, 3.34,2.1 , 'DF');
+    $pdf->setFont('helvetica','',4.9);
+    $pdf->Text(178.9, 7.5, 'D');
+
+    $pdf->setFont('helvetica','B',7.7);
+    $pdf->Text(35.2, 10.5, 'Remplissez soigneusement dans ce cadre les cases qui correspondent au codage de votre questionnaire');
+
+    $pdf->setFont('helvetica','',10);
+    $pdf->Text(8.1, 15, 'Nom/Prénom :');
+    $pdf->Text(7.2, 20.5, 'Cours/Section :');
+
+    $j=33.6;
+    for($i=0;$i<31;$i++){
+      $pdf->SetLineWidth(0.23);
+      $pdf->Rect($j, 15.1, 2.89, 5, 'DF');
+      $j=$j+2.91;
+      }
+      $j=33.6;
+    for($i=0;$i<31;$i++){
+      $pdf->SetLineWidth(0.23);
+      $pdf->Rect($j, 20.4, 2.89, 5, 'DF');
+      $j=$j+2.91;
+      }
+
+      $pdf->Text(60.5, 26.1, "Date de l'évaluation :");
+      $j=94.8;
+      for($i=0;$i<10;$i++){
+        if($i==2 || $i==5){
+          $pdf->Rect($j, 26.2, 2.89, 5, 'DF');
+          $pdf->setFont('helvetica','B',14);
+          $j=$j+2.91;
+        }else{
+          $pdf->setFont('helvetica','',10);
+      $pdf->Rect($j, 26.2, 2.89, 5, 'DF');
+      $j=$j+2.89;
+        }
+      }
+
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(8.8, 27.5, 46,5, 'DF');
+      $pdf->setFont('helvetica','B',10);
+      $pdf->SetTextColor(255, 255, 255); // white text
+      $pdf->Text(8.8, 27.5, 'Consignes de marquage');
+      $pdf->SetFillColor(255, 255, 255);
+      $pdf->SetLineWidth(0.5);
+      $pdf->Rect(8.9, 32, 115.5 ,28, 'DF');
+      $pdf->SetLineWidth(0.23);
+      $pdf->setFont('helvetica','',8);
+      $pdf->SetTextColor(0, 0, 0); // white text
+      $pdf->Text(9.5, 34.9, "Remplissez à l'aide d'un bic noir/bleu foncé (ni crayon, ni feutre) une seule case par ligne.");
+      $pdf->SetFont('helvetica', '', 10);
+      $pdf->SetTextColor(0, 0, 0);
+      $part_to_underline = "bic noir/bleu foncé";
+      $part_width = $pdf->GetStringWidth($part_to_underline);
+      $pdf->SetLineWidth(0.25);
+      $pdf->Line(2 + $pdf->GetStringWidth("Remplissez à l'aide d"), 36 + 2, 2 + $pdf->GetStringWidth("Remplissez à llllls") + $part_width, 36 + 2);
+
+      $pdf->SetFont('helvetica', '', 8);
+      $pdf->Text(9.5, 39, "> Noircissez complètement le");
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(48.9, 40, 4.2, 2, 'DF');
+      $pdf->Text(8.5, 45, "> En cas d'erreur, ne raturez pas sur la première ligne ");
+      $pdf->SetFont('helvetica', '', 10);
+      $pdf->Text(78, 45, "-- >");
+      $pdf->SetFont('helvetica', '', 8);
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(92.4,45.3, 3.35,2.1, 'DF');
+      $pdf->SetFillColor(255, 255, 255);
+      $pdf->Rect(98,45.5, 3.35,2.1, 'DF');
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(103,45.5, 3.35,2.1, 'DF');
+      $pdf->SetFillColor(255, 255, 255);
+      $pdf->Rect(108,45.5, 3.35,2.1, 'DF');
+      $pdf->Rect(113,45.5, 3.35,2.1, 'DF');
+      $pdf->Rect(118,45.5, 3.35,2.1, 'DF');
+      $pdf->Line(94.1 - 3, 46.5 - 3, 94.1 + 3, 46.5 + 3);
+      $pdf->Line(94.1 - 3, 46.5 + 3, 94.1 + 3, 46.5 - 3);
+
+
+      $pdf->Text(8.5, 49, "utilisez la seconde ligne pour choisir la réponse définitive");
+      $pdf->SetFont('helvetica', '', 10);
+      $pdf->Text(81, 49, "-- >");
+      $pdf->SetFont('helvetica', '', 8);
+      $pdf->SetFillColor(255, 255, 255);
+      $pdf->Rect(93,49.7, 3.35,2.1, 'DF');
+      $pdf->Rect(98,49.7, 3.35,2.1, 'DF');
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(103,49.7, 3.35,2.1, 'DF');
+      $pdf->SetFillColor(255, 255, 255);
+      $pdf->Rect(108,49.7, 3.35,2.1, 'DF');
+      $pdf->Rect(113,49.7, 3.35,2.1, 'DF');
+      $pdf->Rect(118,49.7, 3.35,2.1, 'DF');
+      $pdf->SetFont('helvetica', '', 8.2);
+      $pdf->Text(46, 52.5, "> N'inscrivez RIEN sur les bords de page !");
+      $pdf->Text(46, 55.5, "> La correction est entièrement automatisée par ordinateur");
+      $pdf->SetFont('helvetica', '', 8);
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(125.7, 15, 70.9,4.2, 'DF');
+      $pdf->setFont('helvetica','B',10);
+
+
+      $pdf->SetTextColor(255, 255, 255); // white text
+    $pdf->Text(135, 14.9, 'Completez ici Votre Matricule :');
+    $pdf->SetFillColor(255, 255, 255);
+    $pdf->SetLineWidth(0.25);
+    $pdf->Rect(125.7, 19.1, 70.8 ,41, 'DF');
+    $pdf->SetTextColor(0, 0, 0); 
+    $pdf->setFont('helvetica','',9);
+    $pdf->Text(137.7 , 20.5, 'P');
+    $pdf->Rect(143.35, 21.15,3.34,2.1, 'DF');
+    $pdf->setFont('helvetica','',9.7);
+    $pdf->Text(126.6, 27, 'chiffre 1');
+    $pdf->Text(126.6,33.7, 'chiffre 2');
+    $pdf->Text(126.6, 40.4, 'chiffre 3');
+    $pdf->Text(126.6,47.1, 'chiffre 4');
+    $pdf->Text(126.6, 53.8, 'chiffre 5');
+    $pdf->SetLineWidth(0.5);
+    $pdf->setFont('helvetica','',5);
+    $pdf->SetLineWidth(0.5);
+    $pdf->Line(141.4, 39 - 20, 141.4, 39 + 20);
+    $j=28;
+    $k=28;
+    for($i=0;$i<5;$i++){
+    $pdf->SetLineWidth(0.25);
+    $pdf->Rect(143.3, $j, 3.36,2.1, 'DF');
+    $pdf->Text(143.6, $k, '0');
+    $pdf->Rect(148.3, $j, 3.36,2.1, 'DF');
+    $pdf->Text(148.6, $k, '1');
+    $pdf->Rect(153.3, $j, 3.36,2.1, 'DF');
+    $pdf->Text(153.49, $k, '2');
+    $pdf->Rect(158.3, $j, 3.36,2.1, 'DF');
+    $pdf->Text(158.45, $k, '3');
+    $pdf->Rect(163.6, $j, 3.36,2.1, 'DF');
+    $pdf->Text(163.8, $k, '4');
+    $pdf->Rect(168.7, $j, 3.36,2.1, 'DF');
+    $pdf->Text(168.9, $k, '5');
+    $pdf->Rect(173.7, $j, 3.36,2.1, 'DF');
+    $pdf->Text(173.9, $k, '6');
+    $pdf->Rect(178.7, $j, 3.36,2.1, 'DF');
+    $pdf->Text(179, $k, '7');
+    $pdf->Rect(183.8, $j, 3.36,2.1, 'DF');
+    $pdf->Text(183.9, $k, '8');
+    $pdf->Rect(189, $j, 3.36,2.1, 'DF');
+    $pdf->Text(189.3, $k, '9');
+    $j=$j+6.9;
+    $k=$k+6.88;
+    }
+
+    $pdf->SetFillColor(0, 0, 0);
+    $pdf->Rect(8.7, 61, 188,4.5, 'DF');
+    $pdf->setFont('helvetica','B',9.8);
+    $pdf->SetTextColor(255, 255, 255); // white text
+    $pdf->Text(71, 61.2, 'QUESTIONNAIRE A CHOIX MULTIPLE');
+    $pdf->setFont('helvetica','',11);
+    $pdf->SetTextColor(255, 255, 255); // white text
+    $pdf->Text(18, 69, '1');
+    $longeur = 67.5;
+    $largeur =  71;
+    for($i=1;$i<=10;$i++){
+      if($i>=10){
+        $pdf->setFont('helvetica','B',11);
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->Rect(18.5, $longeur, 54,12.6, 'DF');
+  
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(18.5, $longeur, 5.2,12.6, 'DF');
+  
+        $pdf->SetTextColor(255, 255, 255); // white text
+        $pdf->Text(18, $largeur, $i);
+        $longeur= $longeur+13.7;
+        $largeur = $largeur + 13.7;
+      }else{
+      $pdf->setFont('helvetica','B',11);
+      $pdf->SetFillColor(255, 255, 255);
+      $pdf->Rect(18.5, $longeur, 54,12.6, 'DF');
+
+      $pdf->SetFillColor(0, 0, 0);
+      $pdf->Rect(18.5, $longeur, 5.2,12.6, 'DF');
+
+      $pdf->SetTextColor(255, 255, 255); // white text
+      $pdf->Text(19.2, $largeur, $i);
+      $longeur= $longeur+13.7;
+      $largeur = $largeur + 13.7;
+      }
+}
+
+        return $pdf->output('Etudiants');
+    }
+    
 
     /**
      * Show the form for creating a new resource.

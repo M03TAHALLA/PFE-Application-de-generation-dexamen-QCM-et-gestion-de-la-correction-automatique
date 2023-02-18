@@ -1,57 +1,7 @@
-<?php
-
-namespace App\Http\Controllers;
-use App\Models\Etudiant;
-use TCPDF;
-use Illuminate\Http\Request;
-
-class PDFController extends Controller
-{
-    public function show($id)
-    {
-        $etudiant = new Etudiant();
-        
-        $pdf = new TCPDF();
-        // set document information
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('Author Name');
-    $pdf->SetTitle($id);
-    $pdf->SetSubject('TCPDF Tutorial');
-    $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
-    
-    // set default header data
-    $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
-    
-    // set header and footer fonts
-    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-    
-    // set default monospaced font
-    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-    
-    // set margins
-    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-    
-    // set auto page breaks
-    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-    
-    // set image scale factor
-    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-    
-    // set some language-dependent strings (optional)
-    if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
-        require_once(dirname(__FILE__) . '/lang/eng.php');
-        $pdf->setLanguageArray($l);
-    }
-        $pdf->AddPage();
-    
-    // set color for background
-    $pdf->SetFillColor(255, 255, 255);
-    
+ $pdf->SetFillColor(255, 255, 255);
     // set color for text
     $pdf->SetTextColor(0, 0, 0);
+    $pdf->Text(25, 17, $etudiant_data);
     // draw rectangle
     $pdf->Rect(10, 6, 191, 9.5, 'DF');
     $pdf->Rect(15, 7.8, 4, 3, 'DF');
@@ -83,12 +33,6 @@ class PDFController extends Controller
     $pdf->Text(30, 11, 'Remplissez soigneusement dans ce cadre les cases qui correspondent au codage de votre questionnaire');
     $pdf->setFont('helvetica','',9);
     $pdf->Text(3, 19, 'Nom/Prenom:');
-    $j=24;
-    for($i=0;$i<30;$i++){
-    $pdf->Rect($j, 16.5, 4, 7, 'DF');
-    $pdf->Text($j, 18, 'A');
-    $j=$j+4;
-    }
     $pdf->Text(2, 25, 'Cours/Section:');
     $j=24;
     for($i=0;$i<30;$i++){
@@ -299,7 +243,3 @@ class PDFController extends Controller
       $pdf->SetTextColor(255, 255, 255); // white text
     $pdf->Text(141, $j+5, $n);
       $j=$j+18;
-    }
-        return $pdf->output('Etudiants');
-    }
-}
