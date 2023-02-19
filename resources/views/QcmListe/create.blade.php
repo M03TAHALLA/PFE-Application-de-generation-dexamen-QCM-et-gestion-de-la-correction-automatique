@@ -38,7 +38,7 @@
             
                    </div>
                     <div class="col-md-12">
-                      <input class="form-control" type="text" name="libelle" id="libelle" placeholder="Libelle" required>
+                      <input class="form-control" type="text" name="libelle" id="libelle" placeholder="Ecole" required>
                   
                    </div>
                    
