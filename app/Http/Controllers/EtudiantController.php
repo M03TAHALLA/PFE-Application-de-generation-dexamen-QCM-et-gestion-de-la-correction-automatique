@@ -31,7 +31,7 @@ class EtudiantController extends Controller
     $pdf->SetTitle('Etudiants');
     foreach ($etudiant as $etud) {
         $spaceNom  =33;
-        $spacePrenom  =70.6;
+        $spacePrenom  =36;
     $pdf->SetTextColor(0, 0, 0);
     $pdf->AddPage();
     // set color for background
@@ -97,8 +97,8 @@ class EtudiantController extends Controller
       for ($i = 0; $i < $longueur; $i++) {
         $longueur = strlen($etud->Prenom);
       $lettrePrenom = $etud->Prenom[$i];
-      $pdf->Text($spacePrenom, 16,$lettrePrenom);
-      $spacePrenom = $spacePrenom + 3;
+      $pdf->Text($spaceNom + 3.2, 16,$lettrePrenom);
+      $spaceNom = $spaceNom + 2.9 ;
       }
       $pdf->setFont('helvetica','',10);
 

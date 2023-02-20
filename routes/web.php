@@ -29,3 +29,6 @@ Route::resource('Solution', listeSolutionController::class);
 Route::resource('etudiant', EtudiantController::class);
 Route::get('/Etudiant/createEtud/{id}','App\Http\Controllers\EtudiantController@CreateEtudiant')->name('Etud.Create');
 Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->name('Etud.PDF');
+
+
+Route::get('/new','App\Http\Controllers\test@index');

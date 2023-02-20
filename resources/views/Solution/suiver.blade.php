@@ -10,6 +10,7 @@
 @endsection
 @section('content')
 <link rel="stylesheet" href="/css/Qcmlistecss/solution.css">
+<link rel="stylesheet" href="/css/Qcmlistecss/suiver.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.2/xlsx.full.min.js"></script>
 <script
 			src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
@@ -211,10 +212,16 @@ $result = $connect->query($query);
 				  </table>
 				  <center>
 				  <button style="margin-top: 5%"  type="submit">STORE</button>
-				  <a href="{{ route('etudiant.show', $listeqcm->id) }}" style="border: solid 1px rgb(255, 255, 255) ; background-color :rgb(0, 0, 0); font-size:25px;color:white;margin-left:90%;border-radius: 0.3em;width:15%" class="button2"> Etudiant's</a>
+				  <a href="{{ route('etudiant.show', $listeqcm->id) }}" class="cssbuttons-io-button"> Etudiant's
+					
+					<div class="icon">
+					  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+					</div>
+				  </a>
 				</center>
 			</div>
 			<form>
+				
 		</article>
 		<script src="/css/Qcmlistecss/suiver.js"></script>
 	</div>

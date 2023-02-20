@@ -31,7 +31,6 @@
         <div class="col col-3">Matière</div>
         <div class="col col-3">Libelle</div>
         <div class="col col-4">Nombre Question</div>
-        <div class="col col-4"></div>
       </li>
       @foreach($listeqcm as $listeqcm)
       @if($listeqcm->user_id== auth()->user()->id)
@@ -42,15 +41,14 @@
         <div class="col col-3" data-label="Matière">{{ $listeqcm->libelle }}</div>
         <div class="col col-4" data-label="Nombre Question">{{ $listeqcm->NbrQuestion }}</div>
         <div class="col col-5">
-          <form action={{ route('Qcmliste.destroy',$listeqcm->id) }} method="post">
+          <form  action={{ route('Qcmliste.destroy',$listeqcm->id) }} method="post">
             @csrf
             @method('DELETE')
-            <button class="button">Delete</button>
+          </form>
+
+            <button style="border: 2px solid black" class="button">Delete</button>
             <a href="{{ route('Qcmliste.edit',$listeqcm->id) }}" class="button2">Modifier</a>
-            <a href="{{ route('Solution.show',$listeqcm->id) }}" class="button2">Suiver</a>
-        </form>
-          </div>
-          <div class="col col-4"></div>
+            <a href="{{ route('Solution.show',$listeqcm->id) }}" class="button3">Suiver</a>
       </li> 
       @endif    
       @endforeach

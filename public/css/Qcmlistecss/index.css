@@ -48,6 +48,22 @@ h2 {
     color: rgb(3, 104, 255);
 }
 
+.button3{
+    border: 2px solid black ;
+    height: 10px;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+    border-radius: 3px;
+    padding: 3px;
+}
+.button3:hover{
+    background-color: rgb(255, 255, 255);
+    color: green;
+}
+
+
 h2 small {
     font-size: 0.5em;
 }
@@ -91,6 +107,9 @@ ul{
 }
 .col-4 {
     padding-right: 12%;
+}
+.col-5{
+    width: 21.66666667%;
 }
 @media all and (max-width: 767px) {
     .responsive-table .table-header {

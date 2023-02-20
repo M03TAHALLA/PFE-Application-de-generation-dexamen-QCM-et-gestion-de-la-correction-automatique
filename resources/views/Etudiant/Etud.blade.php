@@ -16,6 +16,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
           body {
         font-weight: bold;
@@ -118,6 +119,9 @@
           padding: 2px;
           cursor: pointer;
           font-weight: bold;
+          border: 2px solid black ;
+          display: inline;
+          margin-left: -14%;
       }
       /* From uiverse.io by @satyamchaudharydev */
       /* removing default style of button */
@@ -206,13 +210,50 @@
         width: 17px;
         margin-top: 3px;
       }
- 
+      .button3{
+    border: 2px solid black ;
+    height: 10px;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+    border-radius: 3px;
+    padding: 3px;
+    cursor: pointer;
+}
+.button3:hover{
+    background-color: rgb(255, 255, 255);
+    color: green;
+    cursor: pointer;
+}
+.buttonPDF{
+  border: 2px solid black ;
+    height: 10px;
+    text-decoration: none;
+    background-color: rgb(255, 5, 5);
+    color: white;
+    transition: 0.5s;
+    border-radius: 3px;
+    padding: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 1%;
+    border-radius: 30px;
+}
+.buttonPDF:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
   <div class="container">
-    <a href="{{ route('Etud.Create',$id) }}" class="button2">+ Ajouter Etudiant</a>
-    <a href="{{ route('Etud.PDF', $id) }}" style="border: solid 1px rgb(255, 255, 255) ; background-color :rgb(0, 0, 0); font-size:25px;color:white;margin-left:90%;border-radius: 0.3em;width:15%" class="button2"> Etudiant's</a>
+    <a href="{{ route('Etud.Create',$id) }}" class="button2">+ Ajouter Etudiant</a><br><br><br>
+
+    <a href="{{ route('Etud.PDF', $id) }}" class="buttonPDF"> <i class="fa fa-file-pdf-o" style="font-size:15px"></i>   Etudiant's PDF <i class="fa fa-download" style="font-size:15px"></i>
+    </a>
+   
     <h2>Etudiant's <small>De Votre Qcm</small></h2>
     <form class="form">
       <button>
@@ -249,7 +290,7 @@
             @method('DELETE')
             <button class="button">Delete</button>
             <a href="{{ route('etudiant.edit',$etudiant->id) }}"   class="button2">Modifier</a>
-            <a class="button2">Suiver</a>
+            <a class="button3">Suiver</a>
         </form>
           </div></tr>
       </li>

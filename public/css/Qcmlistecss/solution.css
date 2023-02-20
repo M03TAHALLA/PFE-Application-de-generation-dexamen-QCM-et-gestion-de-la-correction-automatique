@@ -283,14 +283,15 @@ table {
 	  border-collapse: collapse;
 	  margin: 0 auto;
 	  padding: 0;
-	  width: 80%;
+	  width: 70%;
+	  height: 50%;
 	  table-layout: fixed;
 	}
 	
 	table caption {
 		font-family: 'Ubuntu', sans-serif;
 	  font-size: 55px;
-	  font-weight:700;
+	  font-weight:20%;
 	  color:#00000090;
 	  padding: 15px;
 	}
@@ -298,7 +299,7 @@ table {
 	table tr {
 	  background-color: #ffffff90;
 	  border: 1px solid #ddd;
-	  padding: 10px;
+	  padding: 5px;
 	}
 	.thead{
 	  background-color: rgb(67 56 202);
@@ -307,7 +308,7 @@ table {
 	
 	table th,
 	table td {
-	  padding: 20px;
+	  padding: 10px;
 	  text-align: center;
 	}
 	
@@ -378,7 +379,7 @@ table {
 	  .checkBox {
 		display: block;
 		cursor: pointer;
-		left: 20px;
+		left: 30px;
 		width: 30px;
 		height: 30px;
 		border: 3px solid rgba(255, 255, 255, 0);

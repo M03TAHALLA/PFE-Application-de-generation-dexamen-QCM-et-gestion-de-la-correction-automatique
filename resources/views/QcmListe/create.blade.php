@@ -26,11 +26,11 @@
                   <form action="{{ route('Qcmliste.store') }}" method="POST" class="requires-validation">
                   @csrf
                       <div class="col-md-12">
-                         <input class="form-control" type="number" name="Idqcm" placeholder="Id Qcm" required>
+                         <input class="form-control" type="text" name="Idqcm" placeholder="Id Qcm" required>
                
                       </div>
                       <div class="col-md-12">
-                        <input class="form-control" type="number" name="Numquestion" placeholder="Nombre Question" required>
+                        <input class="form-control" type="text" name="Numquestion" placeholder="Nombre Question" required>
                      
                      </div>
                      <div class="col-md-12">
