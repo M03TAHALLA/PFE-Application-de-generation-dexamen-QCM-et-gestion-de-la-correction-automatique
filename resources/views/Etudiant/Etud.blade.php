@@ -255,22 +255,10 @@
     </a>
    
     <h2>Etudiant's <small>De Votre Qcm</small></h2>
-    <form class="form">
-      <button>
-          <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
-              <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-      </button>
-      <input id="search" class="input" placeholder="Recherch By Matricule Etudiant" required="" type="text">
-      <button class="reset" type="reset">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-      </button>
-    </form>
-    <ul class="responsive-table">
+   
+    <ul id="names" class="responsive-table">
       <thead>
-      <li class="table-header">
+      <li class="table-header collection-header">
        <tr><div class="col col-1">Matricule Etudinat</div></tr> 
        <tr><div class="col col-2">Nom </div></tr> 
        <tr><div class="col col-3">Prenom </div></tr> 
@@ -280,11 +268,11 @@
     <tbody>
       @foreach ( $etudiant as $etudiant )
       @if($etudiant->idEtud == $id)
-      <li class="table-row">
-        <tr><div class="col col-1" data-label="Matricule">{{ $etudiant->Matricule }}</div></tr>
-        <tr><div class="col col-2" data-label="Nom">{{$etudiant->Nom }}</div></tr>
-        <tr><div class="col col-3" data-label="Prenom">{{$etudiant->Prenom }}</div></tr>
-        <tr><div class="col col-4" data-label="">
+      <li class="table-row collection-item">
+        <div class="col col-1" data-label="Matricule" >{{ $etudiant->Matricule }}</div>
+        <div class="col col-2" data-label="Nom" style="text-transform: uppercase;">{{$etudiant->Nom }}</div>
+        <div class="col col-3" data-label="Prenom" style="text-transform: uppercase;">{{$etudiant->Prenom }}</div>
+        <div class="col col-4" data-label="">
         <form action={{ route('etudiant.destroy',$etudiant->id) }}  method="post">
             @csrf
             @method('DELETE')
@@ -292,7 +280,7 @@
             <a href="{{ route('etudiant.edit',$etudiant->id) }}"   class="button2">Modifier</a>
             <a class="button3">Suiver</a>
         </form>
-          </div></tr>
+          </div>
       </li>
       @endif
       @endforeach

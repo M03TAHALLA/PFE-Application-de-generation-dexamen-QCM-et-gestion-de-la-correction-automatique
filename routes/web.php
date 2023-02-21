@@ -4,6 +4,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\listeSolutionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QcmController;
+use App\Http\Controllers\ResultatController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -29,6 +30,5 @@ Route::resource('Solution', listeSolutionController::class);
 Route::resource('etudiant', EtudiantController::class);
 Route::get('/Etudiant/createEtud/{id}','App\Http\Controllers\EtudiantController@CreateEtudiant')->name('Etud.Create');
 Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->name('Etud.PDF');
-
-
+Route::resource('resultat', ResultatController::class);
 Route::get('/new','App\Http\Controllers\test@index');

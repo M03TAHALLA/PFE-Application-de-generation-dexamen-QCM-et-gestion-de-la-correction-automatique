@@ -48,7 +48,7 @@
         var selectedImage = document.getElementById("selected-image3");
         selectedImage.src = '/images/ligneRemonde/' +imageValue + '.jpg';
     }
-    document.getElementById("showListButton").addEventListener("click", function(){
+    document.getElementById("listContainer").addEventListener("click", function(){
         document.getElementById("listContainer").style.display = "block";
     });
     

@@ -14,147 +14,352 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/Qcmlistecss/create.css">
-</head>
-<div class="form-body">
-  <div class="row">
-      <div class="form-holder">
-          <div class="form-content">
-              <div class="form-items">
-                  <h3>Register Today</h3>
-                  <p>Fill in the data below.</p>
-                  <form action="{{ route('Qcmliste.update',['Qcmliste'=>$listeqcm->id]) }}" method="POST" class="requires-validation">
-                  @csrf
-                    @method('PUT')
-                      <div class="col-md-12">
-                         <input class="form-control" type="number" value="{{ $listeqcm->idqcm }}" name="Idqcm" placeholder="Id Qcm" required>
-                         <div class="valid-feedback">Id Qcm field is valid!</div>
-                         <div class="invalid-feedback">Id Qcm field cannot be Empty!</div>
-                      </div>
-                      <div class="col-md-12">
-                        <input class="form-control" type="number" name="Numquestion" value="{{ $listeqcm->NbrQuestion }}" placeholder="Nombre Question" required>
-                        <div class="valid-feedback">Nombre Question field is valid!</div>
-                        <div class="invalid-feedback">Nombre Question field cannot be Empty!</div>
-                     </div>
-                     <div class="col-md-12">
-                      <input class="form-control" type="text" name="Matiere" value="{{ $listeqcm->matiere }}" id="Matiere" placeholder="Matiere" required>
-                       <div class="valid-feedback">Matiere field is valid!</div>
-                       <div class="invalid-feedback">Matiere field cannot be Empty!</div>
-                   </div>
-                    <div class="col-md-12">
-                      <input class="form-control" type="text" name="libelle" value="{{ $listeqcm->libelle }}" id="libelle" placeholder="Libelle" required>
-                       <div class="valid-feedback">Libelle field is valid!</div>
-                       <div class="invalid-feedback">Libelle field cannot be Empty!</div>
-                   </div>
-                   
-                     <div class="col-md-12">
-                          <select id="image-select" class="form-select mt-3"  onchange="updateSelectedImage()" name="nbrReponse" required>
-                                <option selected disabled value=""></option>
-                                <option data-image="/images/S2.jpg" value="2" {{ $listeqcm->NbrReponse == '2' ? 'selected' : ''}}>2</option>
-                                <option data-image="/images/S3.jpg" value="3"  {{ $listeqcm->NbrReponse == '3' ? 'selected' : ''}}>3</option>
-                                <option data-image="/images/S4.jpg" value="4"  {{ $listeqcm->NbrReponse == '4' ? 'selected' : ''}}>4</option>
-                                <option data-image="/images/S5.jpg" value="5"  {{ $listeqcm->NbrReponse == '5' ? 'selected' : ''}}>5</option>
-                         </select>
-                          <div class="valid-feedback">You selected a Nombre Reponse!</div>
-                          <div class="invalid-feedback">Please select a Nombre Reponse!</div>
-                     </div>
-                   <div class="col-md-12">
-                    <h3>Nombre des Case Matricule De Etudiant</h3>
-                   <div id="radio" class="col-md-12">
-                    <label for="image1">N°1</label>
-                    <input id="kk" type="radio" name="NumEtud" value="1" id="image1" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '1' ? 'checked' : ''}}>
-                    <label for="image2">N°2</label>
-                    <input type="radio" name="NumEtud" value="2" id="image2" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '2' ? 'checked' : ''}}>
-                    <label for="image3">N°3</label>
-                    <input type="radio" name="NumEtud" value="3" id="image3" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '3' ? 'checked' : ''}}>
-                    <label for="image4">N°4</label>
-                    <input type="radio" name="NumEtud" value="4" id="image4" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '4' ? 'checked' : ''}}>
-                    <label for="image5">N°5</label>
-                    <input type="radio" name="NumEtud" value="5" id="image5" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '5' ? 'checked' : ''}}>
-                    <label for="image6">N°6</label>
-                    <input type="radio" name="NumEtud" value="6" id="image6" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '6' ? 'checked' : ''}}>
-                    <label for="image7">N°7</label>
-                    <input type="radio" name="NumEtud" value="7" id="image7" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '7' ? 'checked' : ''}}>
-                    <label for="image8">N°8</label>
-                    <input type="radio" name="NumEtud" value="8" id="image8" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '8' ? 'checked' : ''}}>
-                    <label for="image9">N°9</label>
-                    <input type="radio" name="NumEtud" value="9" id="image9" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '9' ? 'checked' : ''}}>
-                    <label for="image10">N°10</label>
-                    <input type="radio" name="NumEtud" value="10" id="image10" onchange="changeImage()"
-                    {{ $listeqcm->NbrChiffreEtudiant == '10' ? 'checked' : ''}}>
-                    <div class="valid-feedback">You selected a Nombre des Case Matricule De Etudiant!</div>
-                    <div class="invalid-feedback">Please select a Nombre des Case Matricule De Etudiant!</div>
-               </div>
-                    <div class="valid-feedback">You selected a Nombre des Case Matricule De Etudiant!</div>
-                    <div class="invalid-feedback">Please select a Nombre des Case Matricule De Etudiant!</div>
-               </div>
-               <h3>Ligne Remonde : </h3>
-               <div id="remonde" class="col-md-12">
-                <label for="image1">Pas de ligne de remord</label>
-                <input  type="radio" name="ligneRemonde" value="1" id="image11" onchange="changeImage2()"  {{ $listeqcm->ligneRemonde == '1' ? 'checked' : ''}}><br>
-                <label for="image2">Avec une ligne de remord</label>
-                <input type="radio" name="ligneRemonde" value="0" id="image12" onchange="changeImage2()"  {{ $listeqcm->ligneRemonde == '0' ? 'checked' : ''}}>
-               </div>
-               <h3>Notation : </h3>
-               <div id="remonde" class="col-md-12">
-                <label for="image1">Exactement une seule réponse par question</label>
-                <input id="hideListButton"  type="radio" name="Notation" value="1" id="image11"  onchange="changeImage2()"  {{ $listeqcm->Notation == '1' ? 'checked' : ''}} >
-                <label for="image2">Plusieurs réponses possibles par question</label>
-                <input id="showListButton" type="radio" name="Notation" value="0" id="image12" onchange="changeImage2()" {{ $listeqcm->Notation == '0' ? 'checked' : ''}}>
-               </div>
-               <div id="listContainer" style="display: none;">
-                <h3>Plus Notation : </h3>
-                <label   for="image2">Réponse partiellement juste acceptée</label>
-                <input id="showListButton2" type="radio" name="PlusNotation" value="1" {{ $listeqcm->PlusNotation == '1' ? 'checked' : ''}}>
-                <label  for="image2">Chaque case a le même poids</label>
-                <input id="hideListButton2" type="radio" name="PlusNotation" value="2" {{ $listeqcm->PlusNotation == '2' ? 'checked' : ''}}><br>
-                <label   for="image2">Autre barême (diploma) :  </label>
-                <input  id="showListButton3" type="radio" name="PlusNotation" value="3" {{ $listeqcm->PlusNotation == '3' ? 'checked' : ''}}>
-            </div>
-                 <div class="col-md-12 mt-3">
-                  <label class="mb-3 mr-1">Point Si Vrai: </label>
-                  <input type="number"  name="Point" id="male" autocomplete="off" value="{{$listeqcm->Point}}" required>
-                  <div id="listContainer2" style="display: none;">
-                    <label class="mb-3 mr-1">Point Si Faux: </label>
-                  <input type="number"  name="PointF" id="male" autocomplete="off" value="{{$listeqcm->PointF}}" required><br>
-                  <label class="mb-3 mr-1">Point Si Pas Reponse: </label>
-                  <input type="number"  name="PointN" id="male" autocomplete="off" value="{{$listeqcm->PointN}}" required>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                    <label class="form-check-label">I confirm that all data are correct</label>
-                   <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
-                  </div>
-                      <div class="form-button mt-3">
-                          <button id="submit" type="submit" class="btn btn-primary">Modifier</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="image-container">
-  <h2 style="color: white">Head Grille : </h2>
-  <img src="/images/headGrille.jpg">
-  <textarea  id="text" type="text" class="image-text">{{ $listeqcm->libelle }}</textarea>
-  <input value="{{ $listeqcm->matiere }}" id="text2" type="text" class="image-text">
-  <h2 style="color: white">Nombre Reponse : </h2>
-  <img id="selected-image" src="/images/S{{ $listeqcm->NbrReponse }}.jpg">
-  <img id="selected-image3" src="/images/ligneRemonde/{{ $listeqcm->ligneRemonde }}.jpg">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-  <h2 style="color: white">Nombre Matricule :</h2>
-  <img id="selected-image2" src="/images/{{ $listeqcm->NbrChiffreEtudiant }}.jpg">
-</div>
-<script src="/css/Qcmlistecss/create.js">
-</script>
+
+
+
+
+.card {
+    margin-left: 0%;
+    height: 700px;
+    width: 1180px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid black;
+    padding-top: 0px;
+}
+
+.card .user {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex
+}
+
+.image-box {
+    width: 50%;
+    height: 150%;
+    overflow: hidden
+}
+
+.image-box img {
+    box-sizing: border-box;
+    object-fit: cover;
+    width: 100%;
+    height: 100%
+}
+
+.user .form {
+    width: 50%
+}
+
+.signup_form .image-box {
+    position: absolute;
+    right: 0;
+    transition: all 1s;
+    z-index: 1
+}
+
+.card.active .signup_form .image-box {
+    right: 100%
+}
+
+.card.active .signup_form .form {
+    left: 100%
+}
+
+.card .signup_form .form {
+    position: absolute;
+    background-color: #fff;
+    padding: 20px 30px;
+    left: 0;
+    box-sizing: border-box;
+    transition: all 1s;
+    z-index: 1;
+    height: 100%
+}
+
+.flag-text {
+    position: relative
+}
+
+.flag-text select {
+    height: 30px;
+    width: 100px;
+    background-color: #eff5fe;
+    outline: 0;
+    border: none;
+    font-size: 12px;
+    cursor: pointer
+}
+
+.text_signup {
+    margin-top: 20px
+}
+
+.text_signup h4 {
+    color: #7870a3
+}
+
+.text_signup h2 {
+    color: #201665
+}
+
+.text_signup p {
+    font-size: 12px;
+    font-weight: 700
+}
+
+.text_signup p a {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.input-text-signup {
+    position: relative;
+    margin-top: 30px
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: 0;
+    border: 1px solid #cccadc;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 20px;
+    box-sizing: border-box
+}
+
+.input-text-signup i {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    color: #6b6589;
+    cursor: pointer;
+    font-size: 13px
+}
+
+.fa-eye {
+    position: absolute;
+    top: 12px;
+    right: 8px
+}
+
+.input-text-signup label {
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    font-size: 12px;
+    transition: all 0.5s;
+    pointer-events: none
+}
+
+.input-text-signup input:focus~label,
+.input-text-signup input:valid~label {
+    top: -16px;
+    font-weight: 700;
+    color: #7187d2
+}
+
+.signup-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px
+}
+
+.signup-button button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: 0;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #3e66f7;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+.signup-button button:hover {
+    background-color: blue
+}
+
+.policy {
+    margin-top: 20px
+}
+
+.policy p {
+    font-size: 12px;
+    font-weight: 700
+}
+
+.policy p a {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.warning {
+    border: 1px solid red !important
+}
+
+.signin_form .form {
+    background-color: #fff;
+    padding: 20px 30px;
+    left: 0;
+    box-sizing: border-box;
+    transition: all 1s
+}
+
+
+@media(max-width:690px){
+    .container{
+        height:scroll;
+    }
+    .card{
+        max-width:350px;
+    }
+    .image-box{
+        display:none;
+    }
+    .user .form {
+        width:100%;
+         height:scroll;
+    }        
+        
+    
+}
+.cbx {
+ position: relative;
+ top: 10px;
+ width: 27px;
+ height: 27px;
+ border: 1px solid #c8ccd4;
+ border-radius: 3px;
+ vertical-align: middle;
+ transition: background 0.1s ease;
+ cursor: pointer;
+ display: block;
+ border:1px solid black;
+}
+
+.cbx:after {
+ content: '';
+ position: absolute;
+ top: 2px;
+ left: 8px;
+ width: 8px;
+ height: 12px;
+ opacity: 0;
+ transform: rotate(45deg) scale(0);
+ border-right: 2px solid #fff;
+ border-bottom: 2px solid #fff;
+ transition: all 0.3s ease;
+ transition-delay: 0.15s;
+}
+
+.lbl {
+ margin-left: 5px;
+ vertical-align: middle;
+ cursor: pointer;
+}
+
+#cbx:checked ~ .cbx {
+ border-color: transparent;
+ background: #6871f1;
+ animation: jelly 0.6s ease;
+}
+
+#cbx:checked ~ .cbx:after {
+ opacity: 1;
+ transform: rotate(45deg) scale(1);
+}
+
+.cntr {
+ position: relative;
+}
+
+@keyframes jelly {
+ from {
+  transform: scale(1, 1);
+ }
+
+ 30% {
+  transform: scale(1.25, 0.75);
+ }
+
+ 40% {
+  transform: scale(0.75, 1.25);
+ }
+
+ 50% {
+  transform: scale(1.15, 0.85);
+ }
+
+ 65% {
+  transform: scale(0.95, 1.05);
+ }
+
+ 75% {
+  transform: scale(1.05, 0.95);
+ }
+
+ to {
+  transform: scale(1, 1);
+ }
+}
+
+.hidden-xs-up {
+ display: none!important;
+}
+
+    </style>
+</head>
+<body>
+ <form action="{{ route('Qcmliste.store') }}" method="POST" class="requires-validation">
+    @csrf
+    <div class="container">
+        <div class="card">
+            <div class="user signup_form">
+                <div class="form">
+                    <div class="text_signup">
+                        <h4> Modifier QCM </h4>
+                    </div>
+                    <div class="input-text-signup"><input class="form-control" type="text" value="{{ $listeqcm->idqcm }}" name="Idqcm"  required><i class="fa fa-user"></i><label>ID QCM</label></div>
+                    <div class="input-text-signup"><input class="form-control" type="text" name="Numquestion" value="{{ $listeqcm->NbrQuestion }}" required> <i class="fa fa-envelope-o"></i> <label>Nombre Question</label> </div>
+                    <div class="input-text-signup">  <input class="form-control" type="text" name="Matiere" value="{{ $listeqcm->matiere }}"   required><i class="fa fa-eye-slash"></i><label>Matiere</label></div>
+                    <div class="input-text-signup"><input class="form-control" type="text" name="libelle" value="{{ $listeqcm->libelle }}"  required><i class="fa fa-user"></i> <label>Ecole</label> </div>
+                    <br>
+                    <br>
+                    <h4>Notation</h4>
+                    <input type="number"  name="Point" id="male" autocomplete="off" value="{{$listeqcm->Point}}" required>
+                    <label class="mb-3 mr-1">Point Si Vrai: </label><br>
+                    <input type="number"  name="PointF" id="male" autocomplete="off" value="{{$listeqcm->PointF}}" required>
+                    <label class="mb-3 mr-1">Point Si Faux: </label><br>
+                    <input type="number"  name="PointN" id="male" autocomplete="off" value="{{$listeqcm->PointN}}" required>
+                    <label class="mb-3 mr-1">Point Si Pas Reponse: </label><br>
+                    <br>
+                    <br>
+                    <div class="signup-button"> <button type="submit" >Modifier</button></div>
+                </div> 
+           <div class="image-box"> <img style="width: 100%;height:70%" src="/images/Exam.jpg"></div>
+
+            </div>
+
+        </div>
+</form>
+</body>
+</html>
 @endsection

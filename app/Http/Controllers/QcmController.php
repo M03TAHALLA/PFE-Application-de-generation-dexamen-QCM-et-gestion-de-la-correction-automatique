@@ -41,22 +41,15 @@ class QcmController extends Controller
         $request->validate([
             'Idqcm'=>'required',
             'Numquestion'=>'required',
-            'nbrReponse'=>['required','integer'],
-            'NumEtud'=>['required','max:4','min:1'],
             'Matiere'=>'required',
             'Point'=>['required','integer'],
         ]);
         $qcmliste = new Qcmliste();
         $qcmliste->idqcm = $request->input('Idqcm');
         $qcmliste->NbrQuestion = $request->input('Numquestion');
-        $qcmliste->NbrReponse = $request->input('nbrReponse');
-        $qcmliste->NbrChiffreEtudiant = $request->input('NumEtud');
         $qcmliste->matiere = $request->input('Matiere');
         $qcmliste->libelle = $request->input('libelle');
-        $qcmliste->ligneRemonde = $request->input('ligneRemonde');
         $qcmliste->Point = $request->input('Point');
-        $qcmliste->PlusNotation = $request->input('PlusNotation');
-        $qcmliste->Notation = $request->input('Notation');
         $qcmliste->PointF = $request->input('PointF');
         $qcmliste->PointN = $request->input('PointN');
         $qcmliste->user_id = auth()->user()->id;

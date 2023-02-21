@@ -41,12 +41,11 @@
         <div class="col col-3" data-label="Matière">{{ $listeqcm->libelle }}</div>
         <div class="col col-4" data-label="Nombre Question">{{ $listeqcm->NbrQuestion }}</div>
         <div class="col col-5">
-          <form  action={{ route('Qcmliste.destroy',$listeqcm->id) }} method="post">
+          <form style="display: contents"  action={{ route('Qcmliste.destroy',$listeqcm->id) }} method="post">
             @csrf
             @method('DELETE')
-          </form>
-
             <button style="border: 2px solid black" class="button">Delete</button>
+          </form>
             <a href="{{ route('Qcmliste.edit',$listeqcm->id) }}" class="button2">Modifier</a>
             <a href="{{ route('Solution.show',$listeqcm->id) }}" class="button3">Suiver</a>
       </li> 

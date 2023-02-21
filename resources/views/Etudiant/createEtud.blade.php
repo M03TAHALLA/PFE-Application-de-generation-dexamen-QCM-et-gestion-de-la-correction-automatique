@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Etudiant</title>
+
     <style>
 body {
   align-items: center;
-  background-color: #ffffff;
+  background-color: #e49710;
   display: flex;
   justify-content: center;
   height: 100vh;
 }
 
 .form {
-  background-color: #15172b;
+  background-color: #000000;
   border-radius: 20px;
   box-sizing: border-box;
   height: 500px;
   padding: 20px;
   width: 320px;
+  background-color: transparent;
+  opacity: 80%;
 }
 
 .title {
@@ -57,20 +59,21 @@ body {
 }
 
 .input {
-  background-color: #303245;
+  background-color: #bfc0c8;
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
-  color: #eee;
+  color: #000000;
   font-size: 18px;
   height: 100%;
   outline: 0;
   padding: 4px 20px 0;
   width: 100%;
+  font-weight: bold;
 }
 
 .cut {
-  background-color: #15172b;
+  background-color:transparent;
   border-radius: 10px;
   height: 20px;
   left: 20px;
@@ -99,7 +102,7 @@ body {
   position: absolute;
   transform-origin: 0 50%;
   transition: transform 200ms, color 200ms;
-  top: 20px;
+  top:15px;
 }
 
 .input:focus ~ .placeholder,
@@ -108,15 +111,22 @@ body {
 }
 
 .input:not(:placeholder-shown) ~ .placeholder {
-  color: #808097;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .input:focus ~ .placeholder {
-  color: #dc2f55;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 20px;
+  
 }
 
 .submit {
-  background-color: #08d;
+  background-color: rgb(148, 45, 1);
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
@@ -127,15 +137,32 @@ body {
   margin-top: 38px;
   // outline: 0;
   text-align: center;
+  transition:0.5s;
   width: 100%;
 }
 
 .submit:active {
-  background-color: #06b;
+  background-color: rgb(0, 0, 0);
+}
+
+.submit:hover {
+  background-color: rgb(232, 112, 32);
+}
+
+#video-background {
+  display: flex;
+  position:absolute;
+    right: 0;
+    bottom: 20;
+    z-index: -1;
+    width:100%;
+  object-position: center center;
 }
     </style>
+    <title>Modifier</title>
 </head>
 <body>
+  <video autoplay loop muted id="video-background"><source src="/videos/backgroundCreateEtudiant.mp4"></video>
     <form action="{{ route('etudiant.store') }}" method="POST">
         @csrf
     <div class="form">

@@ -18,7 +18,7 @@ class EtudiantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-
+        
     }
     public function PDF($id)
     {
@@ -91,13 +91,13 @@ class EtudiantController extends Controller
       for ($i = 0; $i < $longueur; $i++) {
         // Obtenir la lettre courante
         $lettreNom = $etud->Nom[$i];
-      $pdf->Text($spaceNom, 16, $lettreNom);
+      $pdf->Text($spaceNom, 16, strtoupper($lettreNom));
       $spaceNom = $spaceNom + 2.9;
       }
       for ($i = 0; $i < $longueur; $i++) {
         $longueur = strlen($etud->Prenom);
       $lettrePrenom = $etud->Prenom[$i];
-      $pdf->Text($spaceNom + 3.2, 16,$lettrePrenom);
+      $pdf->Text($spaceNom + 3.2, 16,strtoupper($lettrePrenom));
       $spaceNom = $spaceNom + 2.9 ;
       }
       $pdf->setFont('helvetica','',10);
@@ -186,7 +186,7 @@ class EtudiantController extends Controller
       $pdf->setFont('helvetica','B',10);
 
 
-      $pdf->SetTextColor(255, 255, 255); // white text
+    $pdf->SetTextColor(255, 255, 255); // white text
     $pdf->Text(135, 14.9, 'Completez ici Votre Matricule :');
     $pdf->SetFillColor(255, 255, 255);
     $pdf->SetLineWidth(0.25);
@@ -207,30 +207,95 @@ class EtudiantController extends Controller
     $pdf->Line(141.4, 39 - 20, 141.4, 39 + 20);
     $j=28;
     $k=28;
+    $matricule =$etud->Matricule; 
+    $chiffres = str_split($matricule);
     for($i=0;$i<5;$i++){
-    $pdf->SetLineWidth(0.25);
-    $pdf->Rect(143.3, $j, 3.36,2.1, 'DF');
+        $pdf->SetLineWidth(0.25);
+        for($mat = 0; $mat < count($chiffres); $mat++){
+            if($chiffres[$mat]==0){
+            $pdf->SetFillColor(0, 0, 0);
+            $pdf->Rect(143.3, $j, 3.36,2.1, 'DF');
+            $pdf->SetFillColor(255, 255, 255);
+            }else{
+                $pdf->Rect(143.3, $j, 3.36,2.1, 'DF');
+            }
     $pdf->Text(143.6, $k, '0');
-    $pdf->Rect(148.3, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==1){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(148.3, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(148.3, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(148.6, $k, '1');
-    $pdf->Rect(153.3, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==2){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(153.3, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(153.3, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(153.49, $k, '2');
-    $pdf->Rect(158.3, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==3){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(158.3, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(158.3, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(158.45, $k, '3');
-    $pdf->Rect(163.6, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==4){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(163.6, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(163.6, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(163.8, $k, '4');
-    $pdf->Rect(168.7, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==5){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(168.7, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(168.7, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(168.9, $k, '5');
-    $pdf->Rect(173.7, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==6){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(173.7, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(173.7, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(173.9, $k, '6');
-    $pdf->Rect(178.7, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==7){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(178.7, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(178.7, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(179, $k, '7');
-    $pdf->Rect(183.8, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==8){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(183.8, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(183.8, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(183.9, $k, '8');
-    $pdf->Rect(189, $j, 3.36,2.1, 'DF');
+    if($chiffres[$mat]==9){
+        $pdf->SetFillColor(0, 0, 0);
+        $pdf->Rect(189, $j, 3.36,2.1, 'DF');
+        $pdf->SetFillColor(255, 255, 255);
+        }else{
+            $pdf->Rect(189, $j, 3.36,2.1, 'DF');
+        }
     $pdf->Text(189.3, $k, '9');
     $j=$j+6.9;
     $k=$k+6.88;
+        }
+        break;
     }
 
     $pdf->SetFillColor(0, 0, 0);
