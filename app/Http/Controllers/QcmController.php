@@ -93,21 +93,15 @@ class QcmController extends Controller
         $request->validate([
             'Idqcm'=>'required',
             'Numquestion'=>'required',
-            'nbrReponse'=>['required','integer'],
-            'NumEtud'=>['required','max:4','min:1'],
             'Matiere'=>'required',
             'Point'=>['required','integer'],
         ]);
         $UpdateQcmlliste = Qcmliste::findOrFail($qcmliste);
         $UpdateQcmlliste->idqcm = $request->input('Idqcm');
         $UpdateQcmlliste->NbrQuestion = $request->input('Numquestion');
-        $UpdateQcmlliste->NbrReponse = $request->input('nbrReponse');
-        $UpdateQcmlliste->NbrChiffreEtudiant = $request->input('NumEtud');
         $UpdateQcmlliste->matiere = $request->input('Matiere');
         $UpdateQcmlliste->libelle = $request->input('libelle');
         $UpdateQcmlliste->Point = $request->input('Point');
-        $UpdateQcmlliste->PlusNotation = $request->input('PlusNotation');
-        $UpdateQcmlliste->Notation = $request->input('Notation');
         $UpdateQcmlliste->PointF = $request->input('PointF');
         $UpdateQcmlliste->PointN = $request->input('PointN');
         $UpdateQcmlliste->user_id = auth()->user()->id;

@@ -31,7 +31,7 @@
             <div class="content">
               <h2>01</h2>
               <h3>Type Grille</h3>
-              <img style="width: 70%;height:70%" src="/images/i1.jpg">
+              <img style="width: 100%;height:100%" src="/images/Reponse.jpg">
             </div>
           </div>
         </div>

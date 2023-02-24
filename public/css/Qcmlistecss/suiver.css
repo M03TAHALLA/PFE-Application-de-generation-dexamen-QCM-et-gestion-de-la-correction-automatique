@@ -67,4 +67,15 @@
 
     color: black;
    }
-   
+   .postcard .postcard__preview-txt {
+    text-align: center;
+  }
+  .red .postcard__bar {
+    width: 100%;
+  }
+  .postcard:hover .postcard__bar {
+    width: 100%;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: center;
+  }

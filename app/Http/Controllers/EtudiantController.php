@@ -7,7 +7,7 @@ use App\Models\Qcmliste;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use mysqli;
+use Illuminate\Support\Facades\Storage;
 use TCPDF;
 
 class EtudiantController extends Controller
@@ -20,10 +20,12 @@ class EtudiantController extends Controller
     public function index(){
         
     }
+
     public function PDF($id)
     {
         $etudiant = Etudiant::where('idEtud', $id)->get();
         $nombreQustion = QcmListe::where('id', $id)->value('NbrQuestion');
+        $Cours = QcmListe::where('id', $id)->value('matiere');
         // Step 1: Establish database connection
         $pdf = new TCPDF();
         
@@ -31,7 +33,6 @@ class EtudiantController extends Controller
     $pdf->SetTitle('Etudiants');
     foreach ($etudiant as $etud) {
         $spaceNom  =33;
-        $spacePrenom  =36;
     $pdf->SetTextColor(0, 0, 0);
     $pdf->AddPage();
     // set color for background
@@ -79,13 +80,11 @@ class EtudiantController extends Controller
     $pdf->Text(7.2, 20.5, 'Cours/Section :');
 
     $j=33.6;
-   
     for($i=0;$i<31;$i++){
       $pdf->SetLineWidth(0.23);
       $pdf->Rect($j, 15.1, 2.89, 5, 'DF');
       $j=$j+2.91;
       }
-
       $pdf->setFont('helvetica','',7);
       $longueur = strlen($etud->Nom);
       for ($i = 0; $i < $longueur; $i++) {
@@ -100,6 +99,7 @@ class EtudiantController extends Controller
       $pdf->Text($spaceNom + 3.2, 16,strtoupper($lettrePrenom));
       $spaceNom = $spaceNom + 2.9 ;
       }
+     
       $pdf->setFont('helvetica','',10);
 
       $j=33.6;
@@ -108,6 +108,18 @@ class EtudiantController extends Controller
       $pdf->Rect($j, 20.4, 2.89, 5, 'DF');
       $j=$j+2.91;
       }
+
+      $pdf->setFont('helvetica','',8);
+      $pdf->setFontSpacing(1);
+      $spaceCours = 32.9;
+      $longueurC = strlen($Cours);
+      for ($i = 0; $i < $longueurC; $i++) {
+        // Obtenir la lettre courante
+        $lettreCour = $Cours[$i];
+      $pdf->Text($spaceCours, 21, strtoupper($lettreCour));
+      $spaceCours = $spaceCours + 2.9;
+      }
+      $pdf->setFontSpacing(0);  
 
       $pdf->Text(60.5, 26.1, "Date de l'évaluation :");
       $j=94.8;
@@ -377,11 +389,11 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(57.1, $largeurline1-1.75, 'T');
         $pdf->Text(57.1, $largeurline1+5, 'T');
-        $pdf->setFont('helvetica','B',11);
+        $pdf->setFont('Courier','B',10);
         
   
         $pdf->SetTextColor(255, 255, 255); // white text
-        $pdf->Text(18.1, $largeurline1, $i);
+        $pdf->Text(18.5, $largeurline1+0.95, $i);
         $longeurline1= $longeurline1+13.7;
         $largeurline1 = $largeurline1 + 13.7;
         $pdf->SetTextColor(0, 0, 0);
@@ -444,14 +456,14 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(57.1, $largeurline1-1.75, 'T');
         $pdf->Text(57.1, $largeurline1+5, 'T');
-        $pdf->setFont('helvetica','B',11);
+        $pdf->setFont('Courier','B',11);
 
 
         $pdf->SetFillColor(0, 0, 0);
         $pdf->Rect(18.5, $longeurline1, 5.2,12.6, 'DF');
   
         $pdf->SetTextColor(255, 255, 255); // white text
-        $pdf->Text(19.2, $largeurline1, $i);
+        $pdf->Text(19.5, $largeurline1+0.95, $i);
         $longeurline1= $longeurline1+13.7;
         $largeurline1 = $largeurline1 + 13.7;
         $pdf->SetTextColor(0, 0, 0);
@@ -522,10 +534,10 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(118, $largeurline2-1.79, 'T');
         $pdf->Text(118, $largeurline2+5, 'T');
-        $pdf->setFont('helvetica','B',11);
+        $pdf->setFont('Courier','B',10);
   
         $pdf->SetTextColor(255, 255, 255); // white text
-        $pdf->Text(79.5, $largeurline2, $i);
+        $pdf->Text(80, $largeurline2+0.95, $i);
         $longeurline2 = $longeurline2+13.7;
         $largeurline2 = $largeurline2 + 13.7;
 
@@ -599,12 +611,12 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(178.7, $largeurline3-1.79, 'T');
         $pdf->Text(178.7,$largeurline3+5, 'T');
-        $pdf->setFont('helvetica','B',11);
+        $pdf->setFont('Courier','B',11);
 
         
   
         $pdf->SetTextColor(255, 255, 255); // white text
-        $pdf->Text(140.7, $largeurline3, $i);
+        $pdf->Text(140.4, $largeurline3+0.8, $i);
         $longeurline3 = $longeurline3+13.7;
         $largeurline3 = $largeurline3 + 13.7;
         
@@ -615,17 +627,17 @@ for($i=1; $i<= $nombreQustion ;$i++){
     }
 
     if($i>45 && $i<=64){
-        $pdf->setFont('helvetica','B',11);
+        $pdf->setFont('Courier','B',9.5);
         $pdf->SetLineWidth(0.25);
         $pdf->SetFillColor(255, 255, 255);
-        $pdf->Rect(20.3, $longeurline4, 54,12.6, 'DF');
+        $pdf->Rect(20.5, $longeurline4, 54,12.6, 'DF');
   
         $pdf->SetFillColor(0, 0, 0);
-        $pdf->Rect(20.3, $longeurline4, 5.2,12.6, 'DF');
+        $pdf->Rect(20.5, $longeurline4, 5.2,12.6, 'DF');
        
 
         $pdf->SetTextColor(255, 255, 255); // white text
-        $pdf->Text(19.8, $largeurline4, $i);
+        $pdf->Text(20.5, $largeurline4+0.7, $i);
         $pdf->SetFillColor(255, 255, 255);
 
         $pdf->Rect(27.5, $longeurline4+1.77, 3.36,2.1, 'DF');
@@ -937,7 +949,19 @@ for($i=1; $i<= $nombreQustion ;$i++){
     }
 }
     }
-        return $pdf->output('Etudiants.pdf');
+    $pdfname = 'Etudiant'.$id.'';
+
+    if (Storage::exists('uploads/' . $pdfname)) {
+        // If the file already exists, delete it before saving the new file
+        Storage::delete('uploads/' . $pdfname);
+    }else{
+        Storage::put('uploads/Etudiants'.$i.'.pdf',  $pdf->output('Etudiants.'.$id.'.pdf','S'));
+    }
+
+    $filePath = storage_path('uploads/Etudiants'.$i.'.pdf');
+
+        return $pdf->output('Etudiants.'.$id.'.pdf');
+   
     }
     
 

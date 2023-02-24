@@ -7,6 +7,10 @@
 <a   style="color: red; font-weight:bold" class="navbar-brand" href="{{ route('Qcmliste.index') }}">
   Liste Qcm
 </a>
+
+<a   style="color: red; font-weight:bold; margin-left:100px" class="navbar-brand" href="{{ route('Scan.show',$listeqcm->id) }}">
+	FastScan
+  </a>
 @endsection
 @section('content')
 <link rel="stylesheet" href="/css/Qcmlistecss/solution.css">
@@ -128,25 +132,25 @@ $result = $connect->query($query);
 					<tbody>
 						@for($i=1;$i <= $listeqcm->NbrQuestion ; $i++)
 						<tr>
-							<td data-label="Name"><div class="content">{{ $i }}</div></td>
-							<td data-label="Name"><div class="content">
+							<td data-label="Qustion"><div class="content">{{ $i }}</div></td>
+							<td data-label="1"><div class="content">
 								<label class="checkBox">
 								  <input id="ch1" name="A{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }}  type="checkbox">
 								  <div class="transition"></div></label>
 							</td>
-							<td data-label="Title"><label class="checkBox">
+							<td data-label="2"><label class="checkBox">
 								<input id="ch1" name="B{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-							<td data-label="Website"><label class="checkBox">
+							<td data-label="3"><label class="checkBox">
 								<input id="ch1" name="C{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-							<td data-label="Role"><label class="checkBox">
+							<td data-label="4"><label class="checkBox">
 								<input id="ch1" name="D{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-							<td data-label="Role"><label class="checkBox">
+							<td data-label="5"><label class="checkBox">
 								<input id="ch1" name="E{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
@@ -156,12 +160,14 @@ $result = $connect->query($query);
 				  </table>
 				  <center>
 				  <button style="margin-top: 5%"  type="submit">STORE</button>
+				  @if (session()->has('success'))
 				  <a href="{{ route('etudiant.show', $listeqcm->id) }}" style="color: rgb(255, 255, 255);font-weight:bold"  class="cssbuttons-io-button"> Etudiant's
 					
 					<div class="icon">
 					  <svg height="24" width="24"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
 					</div>
 				  </a>
+				  @endif
 				</center>
 			</div>
 			<form>
