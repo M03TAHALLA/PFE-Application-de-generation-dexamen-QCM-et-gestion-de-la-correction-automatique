@@ -32,8 +32,8 @@ article {
   transform-origin: center;
   transition: all 0.4s ease-in-out;
   overflow: hidden;
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 300px;
 }
 
 article a::after {
@@ -157,18 +157,24 @@ article:has(:hover, :focus) {
 
     </head>
     <body>
+      <div class="loader-container">
+        <div class="loader"></div>
+    </div>
         <section class="articles">
-            @foreach ($etudiants as $etudiant )
+          <?php 
+          include 'C:/Users/TAHALLA MOHAMMED/Desktop/Lecture-du-template-d-un-QCM-avec-OpenCV-main/depuis_qcm.php';
+       ?>
+          <?php foreach ($etudiant as $etud){?>
             <article>
               <div class="article-wrapper">
                 <figure>
                   <img style="width: 70% ; height:70 ; margin-left:15%" src="images/EtudiantsIcone.png" alt="" />
                 </figure>
                 <div class="article-body">
-                  <h2>{{ $etudiant->NPetudiants}}</h2>
-                <p>Note Finale : {{ $etudiant->Notefinale }}</p>
-                <p>Matricule : {{ $etudiant->Matricule  }}</p>
-                  <a href="{{ route('details',$etudiant->Matricule) }}" class="read-more">
+                  <h2><?php echo $etud[1] ?></h2>
+                <p>Date  : <?php echo $etud[0] ?></p>
+                <p>Matricule : <?php echo $etud[3] ?></p>
+                  <a href="{{ route('details', [$etud[3], $id]) }}" class="read-more">
                     Read more <span class="sr-only">about this is some title</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -177,8 +183,9 @@ article:has(:hover, :focus) {
                 </div>
               </div>
             </article>
-            @endforeach
+         <?php } ?>
           </section>
+        
     </body>
     </html>
 

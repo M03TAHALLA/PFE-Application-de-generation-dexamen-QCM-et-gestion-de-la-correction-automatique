@@ -949,13 +949,14 @@ for($i=1; $i<= $nombreQustion ;$i++){
     }
 }
     }
+    Storage::deleteDirectory('uploads');
     $pdfname = 'Etudiant'.$id.'';
 
     if (Storage::exists('uploads/' . $pdfname)) {
         // If the file already exists, delete it before saving the new file
         Storage::delete('uploads/' . $pdfname);
     }else{
-        Storage::put('uploads/Etudiants'.$i.'.pdf',  $pdf->output('Etudiants.'.$id.'.pdf','S'));
+        Storage::put('uploads/Etudiants'.$id.'.pdf',  $pdf->output('Etudiants.'.$id.'.pdf','S'));
     }
 
     $filePath = storage_path('uploads/Etudiants'.$i.'.pdf');

@@ -9,6 +9,9 @@ use App\Models\solution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Sabberworm\CSS\Property\Import;
+use Symfony\Component\Process\Process;
+
 
 class ResultatController extends Controller
 {
@@ -56,35 +59,55 @@ class ResultatController extends Controller
 
     }
 
-    public function details($matricule){
-        $question = question::select('*')->where('Matricule','=',$matricule)->get();
+    public function details($matricule,$id){
+                include 'C:/Users/TAHALLA MOHAMMED/Desktop/Lecture-du-template-d-un-QCM-avec-OpenCV-main/depuis_qcm.php';
+        for($i=0; $i<count($etudiant); $i++) {
+            if($etudiant[$i][3]==$matricule){
+                $nomEtudiant = $etudiant[$i][1];
+                break;
+            }
+        }
 
-        $nomEtudiant = DB::table('resultats')
-                ->where('Matricule', $matricule)
-                ->value('NPetudiants');
-        $id = DB::table('resultats')
-        ->where('Matricule', $matricule)
-        ->value('idqcm');
+        $solution = solution::select('*')->where('qcmliste_id','=',$id)->get();
 
+
+
+
+        for($i=0; $i<count($etudiant); $i++) {
+            if($etudiant[$i][3]==$matricule){
+                $reponse=$etudiant[$i][4];
+                break;
+            }
+        }        
         
+        $ReponseArray = array();
+        foreach(str_split($reponse) as $caractere) {
+            array_push($ReponseArray, $caractere);
+        }
 
-        $solution = solution::select('*')->where('qcmliste_id','=',$id)->get();  
-        
+
         
         return view('Resultat.details',[
-            'question' => $question,
             'Nom'=>$nomEtudiant,
-            'id'=>$id,
-            'solution'=>$solution,
+            'ReponseArray'=>$ReponseArray,
+            'solution'=>$solution
         ]);
     }
 
     public function Resultat(Request $request){
 
         $id = $request->input('id');
-        $pdf = $request->input('upload');
+        $pdf = $request->file('upload');
 
         $etudiants = resultat::select('*')->where('idqcm','=',$id)->get(1);
+
+
+        $pdf = $request->file('pdf');
+        $path = Storage::disk('local')->put('my_document'.$id.'.pdf', $pdf);
+
+        exec("C:\Users\TAHALLA MOHAMMED\Desktop\Lecture-du-template-d-un-QCM-avec-OpenCV-main\main_programme.py");
+
+
 
         return view('Resultat.result',[
             'id' => $id,

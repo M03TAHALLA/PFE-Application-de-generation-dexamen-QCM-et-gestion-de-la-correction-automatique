@@ -108,11 +108,12 @@ button:active {
   </head>
   <body>
     <video autoplay loop muted id="video-background"><source src="/videos/ResulBack.mp4"></video>
-      <form action="{{ route('Resultat.PDF') }}" method="GET">
+      <form action="{{ route('Resultat.PDF') }}" method="POST" enctype="multipart/form-data">
+        @csrf
    <label for="images" class="drop-container">
   <span class="drop-title">Drop files here</span>
   or
-  <input type="file" name="upload" accept="application/pdf,application/vnd.ms-excel" />
+  <input type="file" name="pdf" accept="application/pdf,application/vnd.ms-excel" />
   <input hidden type="number" name="id" value="{{ $id }}">
  
 </label>

@@ -30,6 +30,6 @@ Route::resource('Solution', listeSolutionController::class);
 Route::resource('etudiant', EtudiantController::class);
 Route::get('/Etudiant/createEtud/{id}','App\Http\Controllers\EtudiantController@CreateEtudiant')->name('Etud.Create');
 Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->name('Etud.PDF');
-Route::get('/Resultat','App\Http\Controllers\ResultatController@Resultat')->name('Resultat.PDF');
-Route::get('/Resultat/{matricule}','App\Http\Controllers\ResultatController@details')->name('details');
+Route::post('/Resultat','App\Http\Controllers\ResultatController@Resultat')->name('Resultat.PDF');
+Route::get('/Resultat/{matricule}/{id}','App\Http\Controllers\ResultatController@details')->name('details');
 Route::resource('Scan', ResultatController::class);

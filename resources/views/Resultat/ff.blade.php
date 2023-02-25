@@ -49,7 +49,7 @@
 }
  .table-concept .table-radio:checked + .table-display + table + .pagination > label.active {
 	 color: #fff;
-	 background-color: #ff0000;
+	 background-color: #000000;
 	 cursor: default;
 }
  .table-concept .table-radio:checked + .table-display + table + .pagination > label.disabled {
@@ -58,14 +58,12 @@
 	 cursor: default;
 }
  .table-concept .table-display {
-	 background-color: #f6f6f6;
-	 text-align: center;
+	 background-color: #000000;
+	 text-align: right;
 	 padding: 10px;
 	 display: none;
 	 position: sticky;
 	 left: 0;
-     font-weight:bold; 
-
 }
  .table-concept table {
 	 background-color: #fff;
@@ -125,7 +123,6 @@
 }
  .table-concept .pagination > label:active {
 	 background-color: #767676;
-     scale: top;
 }
  .table-title {
 	 color: #fff;
@@ -200,49 +197,50 @@
     </style>
 </head>
 <body>
-<div class="card">
-    <div class="table-concept">
-      <input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked"/>
-      <div class="table-display">Question / Reponse (Etudiant :<span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:#ff0000">{{ $Nom }}</span>) 
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>N° Question</th>
-            <th>Reponse</th>
-          </tr>
-        </thead>
-        <tbody>
-            <?php $i = 1 ?>
-            @foreach($ReponseArray as $caractere)
-          <tr>
-            <td><?php echo $i ?></td>
-            <td>{{ $caractere }}</td>
-          </tr>
-        </tbody>
-        <?php  $i++ ?>
-        @endforeach 
-      </table>
-      <div class="pagination">
-        <label id="prev"  class="disabled" for="table_radio_-1">&laquo; Previous</label>
-        <label class="active" for="table_radio_0" id="table_pager_0">Questions / Reponses </label>
-        <label for="table_radio_1" id="table_pager_1">Solutions</label>
-        <label for="table_radio_2" id="table_pager_2">Resultat</label>
-        <label for="table_radio_1">Next &raquo;</label>
-      </div>
-      <input class="table-radio" type="radio" name="table_radio" id="table_radio_1"/>
-      <div class="table-display"> Solution QCM 
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>N° Question</th>
-            <th>Solution</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
+    <div class="card">
+       
+<div class="table-concept">
+          <input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked"/>
+          <div class="table-display">
+            Question / Reponse (Etudiant : {{ $Nom }})
+          </div>
+          <table>
+            <thead>
+                
+              <tr>
+                <th>N° Question</th>
+                <th>Reponse</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php $i = 1 ?>
+                @foreach($ReponseArray as $caractere)
+              <tr>
+                <td><?php echo $i ?></td>
+                <td>{{ $caractere }}</td>
+              </tr>
+            </tbody>
+            <?php  $i++ ?>
+            @endforeach 
+          </table>
+          <div class="pagination">
+            <label class="disabled" for="table_radio_-1">&laquo; Previous</label>
+            <label class="active" style="background: #0065e0;cursor:pointer" for="table_radio_0" id="table_pager_0">Question/Reponse(Etudiant)</label>
+            <label class="active" style="cursor:pointer"  for="table_radio_1" id="table_pager_1">Solution QCM</label>
+          </div>
+          <input class="table-radio" type="radio" name="table_radio" id="table_radio_1" checked="checked"/>
+          <div class="table-display">
+            Question / Reponse (Etudiant : {{ $Nom }})
+          </div>
+          <table>
+            <thead>
+                
+              <tr>
+                <th>N° Question</th>
+                <th>Solution</th>
+              </tr>
+            </thead>
+            <tbody>
                 <?php $i = 1 ?>
                 @foreach($solution as $solution)
                 <tr>
@@ -262,70 +260,18 @@
                 @if($solution->E ==1 )
                     5
                 @endif</td>
-          </tr>
-        </tbody>
-        <?php  $i++ ?>
-        @endforeach 
-      </table>
-      <div class="pagination">
-        <label id="prev"  for="table_radio_0">&laquo; Previous</label>
-        <label for="table_radio_0" id="table_pager_0">Questions / Reponses </label>
-        <label class="active" for="table_radio_1" id="table_pager_1">Solutions</label>
-        <label for="table_radio_2" id="table_pager_2">Resultat</label>
-        <label for="table_radio_2">Next &raquo;</label>
+              </tr>
+            </tbody>
+            <?php  $i++ ?>
+            @endforeach 
+          </table>
+          <div class="pagination">
+            <label class="disabled" for="table_radio_-1">&laquo; Previous</label>
+            <label class="active" for="table_radio_0 ; cursor:pointer" id="table_pager_0">Question/Reponse(Etudiant)</label>
+            <label style="background: #0065e0;cursor:pointer" class="active" for="table_radio_1" id="table_pager_1">Solution QCM</label>
+          </div>
+         
       </div>
-      <input class="table-radio" type="radio" name="table_radio" id="table_radio_2"/>
-      <div class="table-display">Resultat
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>FIRST HEADER</th>
-            <th>SECOND HEADER</th>
-            <th>THIRD HEADER</th>
-            <th>FOURTH HEADER</th>
-            <th>FIFTH HEADER</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>41</td>
-            <td>This is Item number 1-41</td>
-            <td>This is Item number 2-41</td>
-            <td>This is Item number 3-41</td>
-            <td>This is Item number 4-41</td>
-            <td>This is Item number 5-41</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="pagination">
-        <label id="prev" for="table_radio_1">&laquo; Previous</label>
-        <label for="table_radio_0" id="table_pager_0">Questions / Reponses </label>
-        <label for="table_radio_1" id="table_pager_1">Solutions</label>
-        <label class="active" for="table_radio_2" id="table_pager_2">Resultat</label>
-        <label for="table_radio_3">Next &raquo;</label>
-      </div>
-    </div>
-  </div>
-  <script>
-    var myButton1 = document.getElementById("table_pager_0");
-    var myButton2 = document.getElementById("table_pager_1");
-    var myButton3 = document.getElementById("table_pager_2");
-    var myButton4 = document.getElementById("prev");
-
-    myButton1.addEventListener("click", function() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-myButton2.addEventListener("click", function() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-myButton3.addEventListener("click", function() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-myButton4.addEventListener("click", function() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-</script>
-  @endsection
+</body>
+</html>
+@endsection
