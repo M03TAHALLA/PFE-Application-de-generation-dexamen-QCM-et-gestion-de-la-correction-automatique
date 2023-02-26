@@ -242,7 +242,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>
                 <?php $i = 1 ?>
                 @foreach($solution as $solution)
                 <tr>
@@ -280,22 +279,14 @@
       <table>
         <thead>
           <tr>
-            <th>No</th>
-            <th>FIRST HEADER</th>
-            <th>SECOND HEADER</th>
-            <th>THIRD HEADER</th>
-            <th>FOURTH HEADER</th>
-            <th>FIFTH HEADER</th>
+            <th>N°Question</th>
+            <th>Result</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>41</td>
-            <td>This is Item number 1-41</td>
-            <td>This is Item number 2-41</td>
-            <td>This is Item number 3-41</td>
-            <td>This is Item number 4-41</td>
-            <td>This is Item number 5-41</td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
