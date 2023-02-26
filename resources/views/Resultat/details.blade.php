@@ -249,7 +249,7 @@
                 <td>@if($solution->A ==1 )
                     1
                 @endif
-                @if($solution->B ==1 )
+                @if($solution->B == 1 )
                     2
                 @endif
                 @if($solution->C ==1 )
@@ -284,11 +284,16 @@
           </tr>
         </thead>
         <tbody>
+            <?php $i = 1 ?>
+            @foreach ($ReponseArray as $ReponseArray)
           <tr>
-            <td></td>
+            <td><?php echo $i ?></td>
             <td></td>
           </tr>
         </tbody>
+        <?php  $i++ ?>
+        @endforeach 
+        
       </table>
       <div class="pagination">
         <label id="prev" for="table_radio_1">&laquo; Previous</label>

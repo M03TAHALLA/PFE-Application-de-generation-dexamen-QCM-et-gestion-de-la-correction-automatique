@@ -71,35 +71,6 @@ class ResultatController extends Controller
         $solution = solution::select('*')->where('qcmliste_id','=',$id)->get();
 
 
-        $result = array();
-
-        foreach ($solutions as $solution) {
-            if ($solution->A == 1) {
-                // Add the value 1 to the array
-                array_push($result, 1);
-            }
-            if ($solution->B == 1) {
-                // Add the value 1 to the array
-                array_push($result, 2);
-            }
-            if ($solution->C == 1) {
-                // Add the value 1 to the array
-                array_push($result, 3);
-            }
-            if ($solution->D == 1) {
-                // Add the value 1 to the array
-                array_push($result, 3);
-            }
-            if ($solution->D == 1) {
-                // Add the value 1 to the array
-                array_push($result, 4);
-            }
-            if ($solution->E == 1) {
-                // Add the value 1 to the array
-                array_push($result, 5);
-            }
-        }
-
         for($i=0; $i<count($etudiant); $i++) {
             if($etudiant[$i][3]==$matricule){
                 $reponse=$etudiant[$i][4];
@@ -113,6 +84,7 @@ class ResultatController extends Controller
         foreach(str_split($reponse) as $caractere) {
             array_push($ReponseArray, $caractere);
         }
+  
 
 
 
