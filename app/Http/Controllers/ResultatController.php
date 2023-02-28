@@ -60,7 +60,7 @@ class ResultatController extends Controller
     }
 
     public function details($matricule,$id){
-                include 'C:/Users/TAHALLA MOHAMMED/Desktop/Lecture-du-template-d-un-QCM-avec-OpenCV-main/depuis_qcm.php';
+        include 'C:/Users/TAHALLA MOHAMMED/Desktop/Lecture-du-template-d-un-QCM-avec-OpenCV-main/depuis_qcm.php';
         for($i=0; $i<count($etudiant); $i++) {
             if($etudiant[$i][3]==$matricule){
                 $nomEtudiant = $etudiant[$i][1];
@@ -106,9 +106,6 @@ class ResultatController extends Controller
 
         $pdf = $request->file('pdf');
         $path = Storage::disk('local')->put('/', $pdf);
-
-        exec("C:\Users\TAHALLA MOHAMMED\Desktop\Lecture-du-template-d-un-QCM-avec-OpenCV-main\main_programme.py");
-
 
 
         return view('Resultat.result',[

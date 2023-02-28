@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => 'C:\Users\TAHALLA MOHAMMED\Desktop\Lecture-du-template-d-un-QCM-avec-OpenCV-main',
+            'root' => storage_path('app'),
             'throw' => false,
         ],
 
