@@ -34,5 +34,4 @@ Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->
 Route::post('/Resultat','App\Http\Controllers\ResultatController@Resultat')->name('Resultat.PDF');
 Route::get('/Resultat/{matricule}/{id}','App\Http\Controllers\ResultatController@details')->name('details');
 Route::resource('Scan', ResultatController::class);
-Route::get('/run-script', 'App\Http\Controllers\PythonController@runScript');
 

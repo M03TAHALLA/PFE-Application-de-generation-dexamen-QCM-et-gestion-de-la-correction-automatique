@@ -60,7 +60,7 @@ class ResultatController extends Controller
     }
 
     public function details($matricule,$id){
-        include 'C:/Users/TAHALLA MOHAMMED/Desktop/Lecture-du-template-d-un-QCM-avec-OpenCV-main/depuis_qcm.php';
+        include 'C:/xampp/htdocs/QCMProject/public/depuis_qcm.php';
         for($i=0; $i<count($etudiant); $i++) {
             if($etudiant[$i][3]==$matricule){
                 $nomEtudiant = $etudiant[$i][1];
@@ -97,6 +97,24 @@ class ResultatController extends Controller
     }
 
     public function Resultat(Request $request){
+        $studentName = 'Etudiant';
+        // Supprime tous les fichiers existants dans le dossier "public/uploads"
+Storage::deleteDirectory('public/uploads');
+
+// Crée un nouveau dossier vide "public/uploads"
+Storage::makeDirectory('public/uploads');
+
+        $path = $request->file('pdf')->storeAS('public/uploads', $studentName . '.pdf');
+
+        $comande1 = '"C:/Users/TAHALLA MOHAMMED/AppData/Local/Programs/Python/Python311/python.exe" c:/xampp/htdocs/QCMProject/app/Console/PythonSplit/Pdf.py';
+        shell_exec($comande1);
+
+        Storage::delete('public/uploads/Etudiant.pdf');
+
+
+
+    $command = '"C:/Users/TAHALLA MOHAMMED/AppData/Local/Programs/Python/Python311/python.exe" c:/xampp/htdocs/QCMProject/app/Console/Pyhton/main_programme.py';
+    shell_exec($command);
 
         $id = $request->input('id');
         $pdf = $request->file('upload');
@@ -104,8 +122,7 @@ class ResultatController extends Controller
         $etudiants = resultat::select('*')->where('idqcm','=',$id)->get(1);
 
 
-        $pdf = $request->file('pdf');
-        $path = Storage::disk('local')->put('/', $pdf);
+       
 
 
         return view('Resultat.result',[

@@ -15,100 +15,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-    .drop-container {
-  position: relative;
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  padding: 20px;
-  border-radius: 10px;
-  border: 5px dashed #000000;
-  color: #ff0000;
-  cursor: pointer;
-  transition: background .2s ease-in-out, border .2s ease-in-out;
-  margin-top: 10%;
-  width: 50%;
-  margin-left: 25%;
-  opacity: 100%;
-  font-weight: bold;
-  background: #ffffff;
-  opacity: 60%;
-  transition: 1s;
-
-}
-
-.drop-container:hover {
-  background: #fdfdfd;
-  opacity: 80%;
-  border-color: #111;
-}
-
-.drop-container:hover .drop-title {
-  color: #ff0000;
-}
-
-.drop-title {
-  color: #ff0000;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  transition: color .2s ease-in-out;
-}
-#video-background {
-    display: flex;
-    position:absolute;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      width:100%;
-    object-position: center center;
-  }
-  button {
-  position: relative;
-  font-size: 1.2em;
-  padding: 0.7em 1.4em;
-  background-color: #BF0426;
-  text-decoration: none;
-  border: none;
-  border-radius: 0.5em;
-  color: #DEDEDE;
-  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
-  margin-left: 35%;
-  margin-top: 2%;
-  width: 30%;
-}
-
-button::before {
-  position: absolute;
-  content: '';
-  height: 0;
-  width: 0;
-  top: 0;
-  left: 0;
-  background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 50%, rgba(150,4,31,1) 50%, rgba(191,4,38,1) 60%);
-  border-radius: 0 0 0.5em 0;
-  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
-  transition: 0.3s;
-}
-
-button:hover::before {
-  width: 1.6em;
-  height: 1.6em;
-}
-
-button:active {
-  box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
-  transform: translate(0.1em, 0.1em);
-}
-    </style>
+    <link rel="stylesheet" href="/css/Resultat/Scan.css">
   </head>
   <body>
-    <video autoplay loop muted id="video-background"><source src="/videos/ResulBack.mp4"></video>
-      <form action="{{ route('Resultat.PDF') }}" method="POST" enctype="multipart/form-data">
+    <div class="loader" id="loader-overlay" style="display: none">
+      <div>
+        <ul>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+          <li>
+            <svg fill="currentColor" viewBox="0 0 90 120">
+              <path d="M90,0 L90,120 L11,120 C4.92486775,120 0,115.075132 0,109 L0,11 C0,4.92486775 4.92486775,0 11,0 L90,0 Z M71.5,81 L18.5,81 C17.1192881,81 16,82.1192881 16,83.5 C16,84.8254834 17.0315359,85.9100387 18.3356243,85.9946823 L18.5,86 L71.5,86 C72.8807119,86 74,84.8807119 74,83.5 C74,82.1745166 72.9684641,81.0899613 71.6643757,81.0053177 L71.5,81 Z M71.5,57 L18.5,57 C17.1192881,57 16,58.1192881 16,59.5 C16,60.8254834 17.0315359,61.9100387 18.3356243,61.9946823 L18.5,62 L71.5,62 C72.8807119,62 74,60.8807119 74,59.5 C74,58.1192881 72.8807119,57 71.5,57 Z M71.5,33 L18.5,33 C17.1192881,33 16,34.1192881 16,35.5 C16,36.8254834 17.0315359,37.9100387 18.3356243,37.9946823 L18.5,38 L71.5,38 C72.8807119,38 74,36.8807119 74,35.5 C74,34.1192881 72.8807119,33 71.5,33 Z"></path>
+            </svg>
+          </li>
+        </ul>
+      </div><span style="font-weight: bold ; color:rgb(255, 255, 255); font-size:120%">Scanning</span></div>
+      <video autoplay loop muted id="video-background"><source src="/videos/ResulBack.mp4"></video>
+      <form action="{{ route('Resultat.PDF') }}" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
         @csrf
    <label for="images" class="drop-container">
   <span class="drop-title">Drop files here</span>
@@ -121,6 +67,12 @@ button:active {
   <b>Scan Your QCM</b>
 </button>
 </form>
+<script>
+  function showLoader() {
+  document.getElementById("loader-overlay").style.display = "block";
+}
+</script>
   </body>
+
   </html>
 @endsection

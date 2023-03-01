@@ -1,24 +1,3 @@
-'''
-
-        ----------------- Concept du programme --------------------
-        
-        est d'extraire les reponses faites par un etudiant
-        dans un qcm precis (ce projet a ete fait seulement pour
-        traiter ce qcm, donc tous les tailles et les positions
-        dependent a ce dernier)
-
-        la lecture de l'image peut prend le temps seulent le
-        pytesseract {il faut l'installer dans votre PC et preciser
-        le chemin "D:\Program Files\Tesseract-OCR\tesseract.exe")
-        
-        -----------------------------------------------------------
-
-        Ce programme est devloppe par OSSAMA ETTAQAFI , en 2023
-        Contact : ossamaett2002@gmail.com
-        Version : 2.0
-        
-'''
-
 # L'importation des modules
 import cv2
 import time
@@ -625,7 +604,7 @@ def transforerenimg(pdffile):
 #               dans le dossier 'Etudiants'
 
 def extraire_etudiants():
-    lst = os.listdir('C:\\xampp\\htdocs\\QCMProject\\app\\Console\\Pyhton\\Etudiants')
+    lst = os.listdir('C:\\xampp\\htdocs\\QCMProject\\storage\\app\\public\\uploads\\')
 
     for i in range(len(lst)):
         if '.pdf' not in lst[i]:
@@ -635,7 +614,7 @@ def extraire_etudiants():
             supprimer_tempfile()
             
             global pdf_path
-            pdf_path = 'C:\\xampp\\htdocs\\QCMProject\\app\\Console\\Pyhton\\Etudiants\\'+lst[i]
+            pdf_path = 'C:\\xampp\\htdocs\\QCMProject\\storage\\app\\public\\uploads\\'+lst[i]
             transforerenimg(pdf_path)
             
         print(f"\t\t====== Etudiant {i+1} ======")
@@ -941,7 +920,7 @@ def retourner_lesinfos():
 def faire_tous():
     supprimer_tempfile()
 
-    lst = os.listdir('C:\\xampp\\htdocs\\QCMProject\\app\\Console\\Pyhton\\Etudiants\\')
+    lst = os.listdir('C:\\xampp\\htdocs\\QCMProject\\storage\\app\\public\\uploads')
     count = 0
     f = open("depuis_qcm.php", "w")
     f.write("<?php\n")
@@ -954,7 +933,7 @@ def faire_tous():
             supprimer_tempfile()
             
             global pdf_path
-            pdf_path = 'C:\\xampp\\htdocs\\QCMProject\\app\\Console\\Pyhton\\Etudiants\\'+lst[i]
+            pdf_path = 'C:\\xampp\\htdocs\\QCMProject\\storage\\app\\public\\uploads\\'+lst[i]
             transforerenimg(pdf_path)
 
         extraire(0)
