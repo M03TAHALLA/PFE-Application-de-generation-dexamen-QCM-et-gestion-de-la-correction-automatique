@@ -6,6 +6,9 @@
 <a   style="color: red; font-weight:bold; margin-left:100px" class="navbar-brand" href="{{ route('Qcmliste.index') }}">
   Liste Qcm
 </a>
+<a   style="color: rgb(2, 0, 0); font-weight:bold; margin-left:170px" class="navbar-brand">
+  {{ $Matiere }}
+</a>
 @endsection
 @section('content')
 <!DOCTYPE html>
@@ -16,8 +19,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/Resultat/Details.css">
+
 </head>
 <body>
+  <h3>Note Finale :  {{ $NoteFinale }}pts</h3>
 <div class="card">
     <div class="table-concept">
       <input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked"/>
@@ -103,10 +108,16 @@
         </thead>
         <tbody>
             <?php $i = 1 ?>
-            @foreach ($ReponseArray as $ReponseArray)
+            @foreach ($ResultatExam as $ResultatExam)
           <tr>
             <td><?php echo $i ?></td>
-            <td></td>
+            <td>@if($ResultatExam == 'True')
+                <span style="color: green">True &#9989;</span>
+                @endif
+                @if($ResultatExam == 'False')
+                <span style="color: rgb(255, 0, 0)">False &#10060; </span>
+                @endif
+            </td>
           </tr>
         </tbody>
         <?php  $i++ ?>
