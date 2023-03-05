@@ -389,7 +389,7 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(57.1, $largeurline1-1.75, 'T');
         $pdf->Text(57.1, $largeurline1+5, 'T');
-        $pdf->setFont('Courier','B',10);
+        $pdf->setFont('helvetica','B',10);
         
   
         $pdf->SetTextColor(255, 255, 255); // white text
@@ -407,56 +407,55 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->Rect(26.5, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->SetTextColor(0, 0, 0); // white text
         $pdf->setFont('helvetica','',5);
-        $pdf->Text(26.7, $largeurline1-1.79, '1');
-        $pdf->Text(26.7, $largeurline1+5, '1');
+        $pdf->Text(26.7, $largeurline1-1.7, '1');
+        $pdf->Text(26.7, $largeurline1+5.1, '1');
         $pdf->setFont('helvetica','I',7);
         $pdf->Text(26.7, $largeurline1+1, 'une case maximum par ligne');
         $pdf->setFont('helvetica','B',11);
-    
 
-
-        $pdf->Rect(31.6, $longeurline1+1.77, 3.36,2.1, 'DF');
+          $pdf->Rect(31.6, $longeurline1+1.77, 3.36,2.1, 'DF');
         $pdf->Rect(31.6, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->SetTextColor(0, 0, 0); // white text
-        $pdf->setFont('helvetica','',5);
-        $pdf->Text(32, $largeurline1-1.75, '2');
-        $pdf->Text(32, $largeurline1+5, '2');
+        $pdf->setFont('helvetica','',4.5);
+        $pdf->Text(31.9, $largeurline1-1.7, '2');
+        $pdf->Text(31.9, $largeurline1+5.1, '2');
         $pdf->setFont('helvetica','B',11);
+
 
         $pdf->Rect(36.7, $longeurline1+1.77, 3.36,2.1, 'DF');
         $pdf->Rect(36.7, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->setFont('helvetica','',5);
-        $pdf->Text(37, $largeurline1-1.75, '3');
-        $pdf->Text(37, $largeurline1+5, '3');
+        $pdf->Text(36.9, $largeurline1-1.7, '3');
+        $pdf->Text(36.9, $largeurline1+5.1, '3');
         $pdf->setFont('helvetica','B',11);
 
         $pdf->Rect(41.8, $longeurline1+1.77, 3.36,2.1, 'DF');
         $pdf->Rect(41.8, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->setFont('helvetica','',5);
         $pdf->Text(42, $largeurline1-1.75, '4');
-        $pdf->Text(42, $largeurline1+5, '4');
+        $pdf->Text(42, $largeurline1+5.1, '4');
         $pdf->setFont('helvetica','B',11);
 
         $pdf->Rect(46.9, $longeurline1+1.77, 3.36,2.1, 'DF');
         $pdf->Rect(46.9, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->setFont('helvetica','',5);
-        $pdf->Text(47.2, $largeurline1-1.75, '5');
-        $pdf->Text(47.2, $largeurline1+5, '5');
+        $pdf->Text(47.1, $largeurline1-1.75, '5');
+        $pdf->Text(47.1, $largeurline1+5.1, '5');
         $pdf->setFont('helvetica','B',11);
 
         $pdf->Rect(52, $longeurline1+1.77, 3.36,2.1, 'DF');
         $pdf->Rect(52, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->setFont('helvetica','',5);
         $pdf->Text(52.1, $largeurline1-1.75, 'A');
-        $pdf->Text(52.1, $largeurline1+5, 'A');
+        $pdf->Text(52.1, $largeurline1+5.1, 'A');
         $pdf->setFont('helvetica','B',11);
 
         $pdf->Rect(57.1, $longeurline1+1.77, 3.36,2.1, 'DF');
         $pdf->Rect(57.1, $longeurline1+8.6, 3.36,2.1, 'DF');
         $pdf->setFont('helvetica','',5);
-        $pdf->Text(57.1, $largeurline1-1.75, 'T');
-        $pdf->Text(57.1, $largeurline1+5, 'T');
-        $pdf->setFont('Courier','B',11);
+        $pdf->Text(57.2, $largeurline1-1.75, 'T');
+        $pdf->Text(57.2, $largeurline1+5.1, 'T');
+        $pdf->setFont('helvetica','B',11);
 
 
         $pdf->SetFillColor(0, 0, 0);
