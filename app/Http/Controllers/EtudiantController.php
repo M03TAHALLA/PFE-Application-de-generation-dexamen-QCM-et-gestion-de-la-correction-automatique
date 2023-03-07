@@ -533,7 +533,7 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(118, $largeurline2-1.79, 'T');
         $pdf->Text(118, $largeurline2+5, 'T');
-        $pdf->setFont('Courier','B',10);
+        $pdf->setFont('helvetica','B',10);
   
         $pdf->SetTextColor(255, 255, 255); // white text
         $pdf->Text(80, $largeurline2+0.95, $i);
@@ -610,7 +610,7 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $pdf->setFont('helvetica','',5);
         $pdf->Text(178.7, $largeurline3-1.79, 'T');
         $pdf->Text(178.7,$largeurline3+5, 'T');
-        $pdf->setFont('Courier','B',11);
+        $pdf->setFont('helvetica','B',11);
 
         
   
@@ -626,7 +626,7 @@ for($i=1; $i<= $nombreQustion ;$i++){
     }
 
     if($i>45 && $i<=64){
-        $pdf->setFont('Courier','B',9.5);
+        $pdf->setFont('helvetica','B',9.5);
         $pdf->SetLineWidth(0.25);
         $pdf->SetFillColor(255, 255, 255);
         $pdf->Rect(20.5, $longeurline4, 54,12.6, 'DF');
