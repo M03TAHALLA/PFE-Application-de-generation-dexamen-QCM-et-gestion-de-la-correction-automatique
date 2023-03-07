@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\ExamsController;
 use App\Http\Controllers\listeSolutionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QcmController;
@@ -34,4 +35,4 @@ Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->
 Route::post('/Resultat','App\Http\Controllers\ResultatController@Resultat')->name('Resultat.PDF');
 Route::get('/Resultat/{matricule}/{id}','App\Http\Controllers\ResultatController@details')->name('details');
 Route::resource('Scan', ResultatController::class);
-
+Route::resource('Exam', ExamsController::class);

@@ -60,6 +60,10 @@ class ResultatController extends Controller
         ]);
 
     }
+    public function Exam(){
+        return view('Exams.LoginEtudiant');
+
+    }
 
     public function details($matricule,$id){
 
