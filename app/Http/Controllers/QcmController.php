@@ -47,6 +47,7 @@ class QcmController extends Controller
         $qcmliste = new Qcmliste();
         $qcmliste->idqcm = $request->input('Idqcm');
         $qcmliste->NbrQuestion = $request->input('Numquestion');
+        $qcmliste->CodeExam = $request->input('CodeExam');
         $qcmliste->matiere = $request->input('Matiere');
         $qcmliste->libelle = $request->input('libelle');
         $qcmliste->Point = $request->input('Point');

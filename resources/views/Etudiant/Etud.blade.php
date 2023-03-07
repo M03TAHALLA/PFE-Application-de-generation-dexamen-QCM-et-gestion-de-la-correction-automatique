@@ -28,6 +28,8 @@
 
     <a href="{{ route('Etud.PDF', $id) }}"  class="buttonPDF"> <i class="fa fa-file-pdf-o" style="font-size:15px"></i>   Etudiant's PDF <i class="fa fa-download" style="font-size:15px"></i>
     </a>
+
+    
    
     <h2>Etudiant's <small>De Votre Qcm</small></h2>
    
