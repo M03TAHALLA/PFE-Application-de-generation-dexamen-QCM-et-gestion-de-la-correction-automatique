@@ -240,12 +240,13 @@ input {
     <img style="width: 6%;height:11%;color:white" src="/images/Etudiant.png">
     <div class="container" id="container">
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="{{ route('Exam.store') }}" method="POST" >
+                @csrf
                 <h1>Start Exam</h1>
-                <input type="email" placeholder="Matricule"  required/>
-                <input type="email" placeholder="Nom" required/>
-                <input type="email" placeholder="Prenom" required/>
-                <input type="email" placeholder="Code Exam" required/>
+                <input type="text" placeholder="Matricule" name="Matricule" required/>
+                <input type="text" placeholder="Nom" name="Nom" required/>
+                <input type="text" placeholder="Prenom" name="Prenom" required/>
+                <input type="text" placeholder="Code_Exam" name="Code_Exam" required/>
                 <button style="cursor: pointer" type="submit">DEMARER</button>
             </form>
         </div>

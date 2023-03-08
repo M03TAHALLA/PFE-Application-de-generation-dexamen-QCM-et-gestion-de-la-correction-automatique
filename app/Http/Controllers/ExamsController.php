@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam;
+use App\Models\Qcmliste;
 use Illuminate\Http\Request;
 
 class ExamsController extends Controller
@@ -13,7 +15,7 @@ class ExamsController extends Controller
      */
     public function index()
     {
-        return view('Exams.LoginEtudiant');
+       
     }
 
     /**
@@ -23,7 +25,7 @@ class ExamsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Exams.LoginEtudiant');
     }
 
     /**
@@ -34,7 +36,16 @@ class ExamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Exam = new Exam();
+        $Exam->Nom = $request->input('Nom');
+        $Exam->Prenom = $request->input('Prenom');
+        $Exam->Code_Exam = $request->input('Code_Exam');
+        $Exam->Matricule = $request->input('Matricule');
+        $Exam->save();
+        $Code =$request->input('Code_Exam');
+        return view('Exams.AffichageExam',[
+            'Code'=>$Code
+        ]);
     }
 
     /**
