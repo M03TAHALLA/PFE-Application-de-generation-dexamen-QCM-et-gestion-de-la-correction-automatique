@@ -39,6 +39,7 @@
 				<div class="postcard__bar"></div>
 				<div class="postcard__preview-txt">Id Qcm : {{ $listeqcm->idqcm }}</div>
 				<div class="postcard__preview-txt">Nombre Question  : {{ $listeqcm->NbrQuestion }}</div>
+				<div class="postcard__preview-txt">Heurs  : {{ $listeqcm->Heurs }}h</div>
 				<div class="postcard__preview-txt">Créer Par 	 :<span style="color: red ; text-transform: capitalize;"> {{ auth()->user()->name	 }}</span></div>
 				<ul class="postcard__tagbox">
 					Les Notes

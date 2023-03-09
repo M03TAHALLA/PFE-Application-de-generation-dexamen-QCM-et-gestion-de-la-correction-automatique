@@ -42,9 +42,8 @@ class ExamsController extends Controller
         $Exam->Code_Exam = $request->input('Code_Exam');
         $Exam->Matricule = $request->input('Matricule');
         $Exam->save();
-        $Code =$request->input('Code_Exam');
         return view('Exams.AffichageExam',[
-            'Code'=>$Code
+            'Code'=>  $request->input('Matricule'),
         ]);
     }
 
@@ -56,7 +55,7 @@ class ExamsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('Exams.DemarerExam');
     }
 
     /**

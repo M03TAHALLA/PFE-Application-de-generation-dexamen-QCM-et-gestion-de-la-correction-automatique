@@ -33,6 +33,8 @@
                     <div class="input-text-signup"><input class="form-control" type="text"  style="font-weight:bold" name="Numquestion" value="{{ $listeqcm->NbrQuestion }}" required> <i class="fa fa-envelope-o"></i> <label>Nombre Question</label> </div>
                     <div class="input-text-signup">  <input class="form-control" type="text"  style="font-weight:bold" name="Matiere" value="{{ $listeqcm->matiere }}"   required><i class="fa fa-eye-slash"></i><label>Matiere</label></div>
                     <div class="input-text-signup"><input class="form-control" type="text"  style="font-weight:bold" name="libelle" value="{{ $listeqcm->libelle }}"  required><i class="fa fa-user"></i> <label>Ecole</label> </div>
+                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam" value="{{ $listeqcm->CodeExam }}"  required><i class="fa fa-user"></i> <label>Code</label> </div>
+                    <div class="input-text-signup"><input class="form-control w-100"  style="font-weight:bold;"  type="time" name="Heurs" value="{{ $listeqcm->Heurs }}"  required></div>
                     <br>
                     <br>
                     <h4>Notation</h4>

@@ -53,6 +53,7 @@ class QcmController extends Controller
         $qcmliste->Point = $request->input('Point');
         $qcmliste->PointF = $request->input('PointF');
         $qcmliste->PointN = $request->input('PointN');
+        $qcmliste->Heurs = $request->input('Heurs');
         $qcmliste->user_id = auth()->user()->id;
         $qcmliste->save();
         return redirect()->route('Qcmliste.index');
@@ -102,7 +103,9 @@ class QcmController extends Controller
         $UpdateQcmlliste->NbrQuestion = $request->input('Numquestion');
         $UpdateQcmlliste->matiere = $request->input('Matiere');
         $UpdateQcmlliste->libelle = $request->input('libelle');
+        $UpdateQcmlliste->CodeExam = $request->input('CodeExam');
         $UpdateQcmlliste->Point = $request->input('Point');
+        $UpdateQcmlliste->Heurs = $request->input('Heurs');
         $UpdateQcmlliste->PointF = $request->input('PointF');
         $UpdateQcmlliste->PointN = $request->input('PointN');
         $UpdateQcmlliste->user_id = auth()->user()->id;
