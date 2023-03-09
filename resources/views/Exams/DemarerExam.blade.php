@@ -15,14 +15,26 @@
     <meta charset="UTF-8">
     <title>Examen </title>
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
 	<style>
-    
+      .RadioButton {
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+	  }
+    input[type=radio]:checked + label {
+  background-color: black;
+  color: white;
+}
 	</style>
   </head>
   <body>
     <p style="font-size: 20px;text-align:center;font-weight:bold;border:4px solid black;background:rgb(255, 0, 0);color:rgb(0, 0, 0)"><img src="/images/timerExam.png" style="width: 50px;height:50px;margin-bottom:1%;background:red" alt=""> Temps : <span style="color: rgb(255, 255, 255);font-size:50px" id="timer"></span>.</p>
     <h1 style="text-align: center">Examen </h1>
-    <div style="max-width: 48% ;margin-left:50%" class="container pt-4 pb-4">
+    <div style="max-width: 45% ;margin-left:50%" class="container pt-4 pb-4">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -35,40 +47,42 @@
           </tr>
         </thead>
         <tbody>
+          @for($i=1;$i<10;$i++)
           <tr>
-            <td>1
+            <td style="font-weight:bold">N°{{ $i }}
             </td>
             <td>
-              <label class="form-check-custom success with-icon-side">
-                <input type="radio" name="radio-11" >
+              <label class="">
+                <input class="RadioButton" type="radio" name="Reponse{{$i}}" >
                 <span><i class="fas fa-check"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input type="radio" name="radio-11" checked >
+                <input class="RadioButton" type="radio" name="Reponse{{$i}}"  >
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input type="radio" name="radio-11" checked >
+                <input class="RadioButton" type="radio" name="Reponse{{$i}}"  >
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input type="radio" name="radio-11" checked >
+                <input class="RadioButton" type="radio" name="Reponse{{$i}}"  >
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input type="radio" name="radio-11" checked >
+                <input class="RadioButton" type="radio" name="Reponse{{$i}}"  >
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
           </tr>
+          @endfor
         </tbody>
       </table>
     </div>
@@ -76,7 +90,7 @@
 </html>
     <script>
       // Définir la durée du compte à rebours en millisecondes (2 heures)
-      var duration =  60 * 1000;
+      var duration = 2 * 60 * 60 * 1000;
 
       // Vérifier si la date de fin est déjà stockée dans le stockage local
       var countDownDate = localStorage.getItem("countDownDate");
