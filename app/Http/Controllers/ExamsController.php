@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\Qcmliste;
+use App\Models\ReponseEtud;
 use Illuminate\Http\Request;
 
 class ExamsController extends Controller
@@ -45,6 +46,11 @@ class ExamsController extends Controller
         return view('Exams.AffichageExam',[
             'Code'=>  $request->input('Matricule'),
         ]);
+    }
+
+    public function StoreReponses(Request $request){
+        $ReponseEtud = new ReponseEtud();
+        
     }
 
     /**
