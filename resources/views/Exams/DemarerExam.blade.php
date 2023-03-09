@@ -16,33 +16,64 @@
     <title>Examen </title>
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 	<style>
-
+    
 	</style>
   </head>
   <body>
     <p style="font-size: 20px;text-align:center;font-weight:bold;border:4px solid black;background:rgb(255, 0, 0);color:rgb(0, 0, 0)"><img src="/images/timerExam.png" style="width: 50px;height:50px;margin-bottom:1%;background:red" alt=""> Temps : <span style="color: rgb(255, 255, 255);font-size:50px" id="timer"></span>.</p>
     <h1 style="text-align: center">Examen </h1>
-	<table>
-		<tr>
-		  <td>Colonne 1</td>
-		  <td>Colonne 2</td>
-		  <td>Colonne 3</td>
-		  <td>Colonne 4</td>
-		</tr>
-		<tr>
-		  <td><input type="radio" name="option1" value="1"> Option 1</td>
-		  <td><input type="radio" name="option2" value="1"> Option 2</td>
-		  <td><input type="radio" name="option3" value="1"> Option 3</td>
-		  <td><input type="radio" name="option4" value="1"> Option 4</td>
-		</tr>
-		<tr>
-		  <td><input type="radio" name="option1" value="2"> Option 1</td>
-		  <td><input type="radio" name="option2" value="2"> Option 2</td>
-		  <td><input type="radio" name="option3" value="2"> Option 3</td>
-		  <td><input type="radio" name="option4" value="2"> Option 4</td>
-		</tr>
-	  </table>
-	  
+    <div style="max-width: 48% ;margin-left:50%" class="container pt-4 pb-4">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1
+            </td>
+            <td>
+              <label class="form-check-custom success with-icon-side">
+                <input type="radio" name="radio-11" >
+                <span><i class="fas fa-check"></i></span>
+              </label>
+            </td>
+            <td>
+              <label class="form-check-custom danger with-icon-side">
+                <input type="radio" name="radio-11" checked >
+                <span><i class="fas fa-trash-alt"></i></span>
+              </label>
+            </td>
+            <td>
+              <label class="form-check-custom danger with-icon-side">
+                <input type="radio" name="radio-11" checked >
+                <span><i class="fas fa-trash-alt"></i></span>
+              </label>
+            </td>
+            <td>
+              <label class="form-check-custom danger with-icon-side">
+                <input type="radio" name="radio-11" checked >
+                <span><i class="fas fa-trash-alt"></i></span>
+              </label>
+            </td>
+            <td>
+              <label class="form-check-custom danger with-icon-side">
+                <input type="radio" name="radio-11" checked >
+                <span><i class="fas fa-trash-alt"></i></span>
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
     <script>
       // Définir la durée du compte à rebours en millisecondes (2 heures)
       var duration =  60 * 1000;

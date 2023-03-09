@@ -31,7 +31,7 @@
 }
  .card {
 	 width: 24rem;
-	 height: 36rem;
+	 height: 31rem;
 	 border-radius: 10px;
 	 overflow: hidden;
 	 cursor: pointer;
@@ -102,7 +102,6 @@
       <a style="color:rgb(255, 0, 0);font-weight:bold" href="{{ route('Exam.show',$Code) }}" class="button">
         Demarer Le Temps
         <span style="color:black;font-weight:bold" class="material-symbols-outlined">
-          arrow_right_alt
         </span>
       </a>
     </div>

@@ -32,7 +32,7 @@
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold" type="text" name="Numquestion" required> <i class="fa fa-envelope-o"></i> <label>Nombre Question</label> </div>
                     <div class="input-text-signup">  <input class="form-control"  style="font-weight:bold" type="text" name="Matiere"   required><i class="fa fa-eye-slash"></i><label>Matiere</label></div>
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold" type="text" name="libelle"  required><i class="fa fa-user"></i> <label>Ecole</label> </div>
-                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam" value="<?php echo rand(0, 15545223265474884); ?>" required><i class="fa fa-user"></i> <label>Code</label> </div>
+                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam" disabled value="<?php echo rand(0, 15545223265474884); ?>" required><i class="fa fa-user"></i> <label>Code</label> </div>
                     <div class="input-text-signup"><input class="form-control w-100"  style="font-weight:bold;"  type="time" name="Heurs"  required></div>
                     <br>
                     <br>
