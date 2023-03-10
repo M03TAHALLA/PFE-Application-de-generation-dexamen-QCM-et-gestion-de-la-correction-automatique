@@ -250,9 +250,9 @@ input {
                 <input type="text" placeholder="Nom" value="{{ old('Nom') }}" name="Nom" required/>
                 <input type="text" placeholder="Prenom" value="{{ old('Prenom') }}" name="Prenom" required/>
                 <input type="text" placeholder="Code_Exam" value="{{ old('Code_Exam') }}" name="Code_Exam" required/>
-			@if (session('message2'))
-				<p style="color:red;font-size:10px;margin: 0px;margin-right: 40px;">{{ session('message2') }}</p>
-			@endif
+		@if (session('message2'))
+			<p style="color:red;font-size:10px;margin: 0px;margin-right: 60px;">{{ session('message2') }}</p>
+		@endif
                 <button style="cursor: pointer;" type="submit">DEMARER</button>
             </form>
         </div>

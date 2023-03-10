@@ -112,4 +112,8 @@ transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
         height: 100%;
     }
 }
+#success-message.remove {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
 

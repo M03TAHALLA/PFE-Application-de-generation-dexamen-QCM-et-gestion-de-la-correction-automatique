@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reponse_etuds', function (Blueprint $table) {
+        Schema::create('reponses', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('Matricule');
-            $table->boolean('A')->default(0);
-            $table->boolean('B')->default(0);
-            $table->boolean('C')->default(0);
-            $table->boolean('D')->default(0);
-            $table->boolean('E')->default(0);
+            $table->integer('Matricule');
+            $table->boolean('A');
+            $table->boolean('B');
+            $table->boolean('C');
+            $table->boolean('D');
+            $table->boolean('E');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reponse_etuds');
+        Schema::dropIfExists('reponses');
     }
 };

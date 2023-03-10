@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\ExamsController;
 use App\Http\Controllers\listeSolutionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QcmController;
 use App\Http\Controllers\ResultatController;
 use App\Http\Controllers\PythonController;
+use App\Http\Controllers\ReponseEtudiantController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -34,5 +36,6 @@ Route::get('/Etudiant/Pdf/{id}','App\Http\Controllers\EtudiantController@PDF')->
 Route::post('/Resultat','App\Http\Controllers\ResultatController@Resultat')->name('Resultat.PDF');
 Route::get('/Resultat/{matricule}/{id}','App\Http\Controllers\ResultatController@details')->name('details');
 Route::resource('Scan', ResultatController::class);
-Route::resource('Exam', ResultatController::class);
+Route::resource('Exam', ExamsController::class);
+Route::resource('Reponse',ReponseEtudiantController::class);
 

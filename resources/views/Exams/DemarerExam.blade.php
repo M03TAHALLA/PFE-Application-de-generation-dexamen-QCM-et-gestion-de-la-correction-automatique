@@ -125,11 +125,13 @@ button:hover .button-text {
     <h5>Matiere :<span style="font-weight:bold;color:red;margin-left:5.5%">{{ $matiere }}</span> </h5>
     <h5>Enseignant : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $Name }}</span> </h5>
     <h5>Time : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $Heurs }}h</span></h5>
-    <h5>Nombre Question : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $nombreQustion }}</span></h5>
+    <h5>Nombre Question : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $nombreQuestion }}</span></h5>
   </div>
     <div style="max-width: 45% ;margin-left:50%" class="container pt-4 pb-4">
-      <form action="{{ route('Solution.store') }}" method="POST">
+      <form action="{{ route('Reponse.store') }}" method="POST">
         @csrf
+        <input type="text" hidden name="Matricule" value="{{ $Matricule }}">
+        <input type="text" hidden  name="nombreQuestion" value="{{ $nombreQuestion }}">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -142,7 +144,7 @@ button:hover .button-text {
           </tr>
         </thead>
         <tbody>
-          @for($i=1;$i<=$nombreQustion;$i++)
+          @for($i=1;$i<=$nombreQuestion;$i++)
           <tr>
             <td style="font-weight:bold">N°{{ $i }}
             </td>
@@ -180,8 +182,6 @@ button:hover .button-text {
           @endfor
         </tbody>
       </table>
-      <input type="text" hidden name="Matricule" value="{{ $Matricule }}">
-      <input type="text" hidden  name="nombreQustion" value="{{ $nombreQustion }}">
       <button type="submit" class="learn-more">
         <span class="circle" aria-hidden="true">
         <span class="icon arrow"></span>

@@ -13,6 +13,20 @@
     <link rel="stylesheet" href="/css/welcome.css">
 </head>
 <body>
+    @if(isset($success))
+    <div class="alert alert-success" id="success-message">
+        {{ $success }}
+    </div>
+    <script>
+        setTimeout(function() {
+            var successMessage = document.getElementById('success-message');
+            successMessage.classList.add('remove');
+            setTimeout(function() {
+                successMessage.remove();
+            }, 1000); // remove after 1 second
+        }, 3000); // remove after 3 seconds
+    </script>
+@endif
     <div class="bg">
         <video autoplay loop muted plays-inline class="back">
             <source  src="/videos/BackWelcome.mp4" type=video/mp4>
@@ -22,6 +36,7 @@
         <p><span>Welcome</span> to  <span>EasyQCM</span> (Quiz Application) ! We are excited that you have chosen to participate in our quizzes and tests. Our goal is to provide you with a fun and engaging way to test your knowledge and improve your skills. We have a wide variety of quizzes in different subjects and difficulty levels</p>
             <a  class="button" style="width: 20%;margin-right:10%;"  href="{{ route('home') }}"> <img style="width: 30%;height:30%;color:white" src="/images/Enseignant.png">Enseignant</a>
             <a  class="button" style="width: 20%;"  href="{{ route('Exam.create') }}"> <img style="width: 30%;height:30%;color:white" src="/images/Etudiant.png">Etudiant</a>
+        
 </div>
     </div>
 </body>

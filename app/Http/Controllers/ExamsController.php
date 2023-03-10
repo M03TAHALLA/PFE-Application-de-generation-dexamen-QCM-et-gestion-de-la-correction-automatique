@@ -58,17 +58,6 @@ class ExamsController extends Controller
         ]);
     }
 
-    public function StoreReponseEtud(Request $request){
-        $ReponseEtud = new ReponseEtud();
-        
-
-    }
-
-    public function StoreReponses(Request $request){
-        $ReponseEtud = new ReponseEtud();
-
-    }
-
     /**
      * Display the specified resource.
      *
@@ -82,10 +71,10 @@ class ExamsController extends Controller
         $matiere = QcmListe::where('CodeExam', $CodeExam)->value('matiere');
         $Heurs = QcmListe::where('CodeExam', $CodeExam)->value('Heurs');
         $Name = User::where('id',$UserId)->value('name');
-        $nombreQustion = QcmListe::where('CodeExam', $CodeExam)->value('NbrQuestion');
+        $nombreQuestion = QcmListe::where('CodeExam', $CodeExam)->value('NbrQuestion');
         return view('Exams.DemarerExam',[
             'Matricule'=>$Matricule,
-            'nombreQustion'=>$nombreQustion,
+            'nombreQuestion'=>$nombreQuestion,
             'Name'=>$Name,
             'matiere'=>$matiere,
             'Heurs'=>$Heurs

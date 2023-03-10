@@ -65,8 +65,6 @@ if ($count > 0) {
                 $solution[$i][$j]->E = $request->input('E'.$j.'') ? 1 : 0;
                 $solution[$i][$j]->created_at=$request->input('created_at');
             }
-
-
         }
         for ($i = 0; $i < 1; $i++) {
             for ($j = 1; $j <= $nbrqustion; $j++) {
