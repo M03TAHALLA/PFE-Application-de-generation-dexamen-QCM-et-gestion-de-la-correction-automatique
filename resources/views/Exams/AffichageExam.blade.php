@@ -99,7 +99,7 @@
         Examen
       </h2>
       <p style="color:black;font-weight:bold">Voici Votre Exam Donner Par Votre Enseignant</p>
-      <a style="color:rgb(255, 0, 0);font-weight:bold" href="{{ route('Exam.show',$Code) }}" class="button">
+      <a style="color:rgb(255, 0, 0);font-weight:bold" href="{{ route('Exam.show',$Matricule) }}" class="button">
         Demarer Le Temps
         <span style="color:black;font-weight:bold" class="material-symbols-outlined">
         </span>

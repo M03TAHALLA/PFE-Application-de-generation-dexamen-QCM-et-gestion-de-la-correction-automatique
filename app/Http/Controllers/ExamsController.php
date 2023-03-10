@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exam;
 use App\Models\Qcmliste;
 use App\Models\ReponseEtud;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExamsController extends Controller
@@ -37,6 +38,15 @@ class ExamsController extends Controller
      */
     public function store(Request $request)
     {
+    $matricule = $request->input('Matricule');
+    $Code_Exam = $request->input('Code_Exam');
+        if (Exam::where('Matricule', $matricule)->exists()) {
+            return redirect()->back()->with('message', 'Matricule already exists in Exams');
+        }
+
+        if (!Qcmliste::where('CodeExam', $Code_Exam)->exists()) {
+            return redirect()->back()->with('message2', 'This Exam Is Not Exist');
+        }
         $Exam = new Exam();
         $Exam->Nom = $request->input('Nom');
         $Exam->Prenom = $request->input('Prenom');
@@ -44,13 +54,19 @@ class ExamsController extends Controller
         $Exam->Matricule = $request->input('Matricule');
         $Exam->save();
         return view('Exams.AffichageExam',[
-            'Code'=>  $request->input('Matricule'),
+            'Matricule'=>  $request->input('Matricule'),
         ]);
+    }
+
+    public function StoreReponseEtud(Request $request){
+        $ReponseEtud = new ReponseEtud();
+        
+
     }
 
     public function StoreReponses(Request $request){
         $ReponseEtud = new ReponseEtud();
-        
+
     }
 
     /**
@@ -59,9 +75,21 @@ class ExamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($Matricule)
     {
-        return view('Exams.DemarerExam');
+        $CodeExam = Exam::where('Matricule', $Matricule)->value('Code_Exam');
+        $UserId = QcmListe::where('CodeExam', $CodeExam)->value('user_id');
+        $matiere = QcmListe::where('CodeExam', $CodeExam)->value('matiere');
+        $Heurs = QcmListe::where('CodeExam', $CodeExam)->value('Heurs');
+        $Name = User::where('id',$UserId)->value('name');
+        $nombreQustion = QcmListe::where('CodeExam', $CodeExam)->value('NbrQuestion');
+        return view('Exams.DemarerExam',[
+            'Matricule'=>$Matricule,
+            'nombreQustion'=>$nombreQustion,
+            'Name'=>$Name,
+            'matiere'=>$matiere,
+            'Heurs'=>$Heurs
+        ]);
     }
 
     /**

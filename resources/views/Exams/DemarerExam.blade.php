@@ -121,6 +121,12 @@ button:hover .button-text {
   <body>
     <p style="font-size: 20px;text-align:center;font-weight:bold;border:4px solid black;background:rgb(255, 0, 0);color:rgb(0, 0, 0)"><img src="/images/timerExam.png" style="width: 50px;height:50px;margin-bottom:1%;background:red" alt=""> Temps : <span style="color: rgb(255, 255, 255);font-size:50px" id="timer"></span>.</p>
     <h1 style="text-align: center">Examen </h1>
+  <div style="border: 2px solid black;width:20%;display:inline-block;margin-left:5%;padding:1%">
+    <h5>Matiere :<span style="font-weight:bold;color:red;margin-left:5.5%">{{ $matiere }}</span> </h5>
+    <h5>Enseignant : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $Name }}</span> </h5>
+    <h5>Time : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $Heurs }}h</span></h5>
+    <h5>Nombre Question : <span style="font-weight:bold;color:red;margin-left:5.5%">{{ $nombreQustion }}</span></h5>
+  </div>
     <div style="max-width: 45% ;margin-left:50%" class="container pt-4 pb-4">
       <form action="{{ route('Solution.store') }}" method="POST">
         @csrf
@@ -136,37 +142,37 @@ button:hover .button-text {
           </tr>
         </thead>
         <tbody>
-          @for($i=1;$i<10;$i++)
+          @for($i=1;$i<=$nombreQustion;$i++)
           <tr>
             <td style="font-weight:bold">N°{{ $i }}
             </td>
             <td>
               <label class="">
-                <input class="RadioButton" type="checkbox" {{ old('is_active') ? 'checked' : '' }} name="A{{$i}}">
+                <input class="RadioButton" type="checkbox" value="1" {{ old('is_active') ? 'checked' : '' }} name="A{{$i}}">
                 <span><i class="fas fa-check"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input class="RadioButton" type="checkbox" {{ old('is_active') ? 'checked' : '' }} name="B{{$i}}">
+                <input class="RadioButton" type="checkbox" value="1" {{ old('is_active') ? 'checked' : '' }} name="B{{$i}}">
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input class="RadioButton" type="checkbox" {{ old('is_active') ? 'checked' : '' }} name="C{{$i}}">
+                <input class="RadioButton" type="checkbox" value="1" {{ old('is_active') ? 'checked' : '' }} name="C{{$i}}">
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input class="RadioButton" type="checkbox" {{ old('is_active') ? 'checked' : '' }} name="D{{$i}}">
+                <input class="RadioButton" type="checkbox" value="1" {{ old('is_active') ? 'checked' : '' }} name="D{{$i}}">
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
             <td>
               <label class="form-check-custom danger with-icon-side">
-                <input class="RadioButton" type="checkbox" {{ old('is_active') ? 'checked' : '' }} name="E{{$i}}">
+                <input class="RadioButton" type="checkbox" value="1" {{ old('is_active') ? 'checked' : '' }} name="E{{$i}}">
                 <span><i class="fas fa-trash-alt"></i></span>
               </label>
             </td>
@@ -174,6 +180,8 @@ button:hover .button-text {
           @endfor
         </tbody>
       </table>
+      <input type="text" hidden name="Matricule" value="{{ $Matricule }}">
+      <input type="text" hidden  name="nombreQustion" value="{{ $nombreQustion }}">
       <button type="submit" class="learn-more">
         <span class="circle" aria-hidden="true">
         <span class="icon arrow"></span>
@@ -186,7 +194,7 @@ button:hover .button-text {
 </html>
     <script>
       // Définir la durée du compte à rebours en millisecondes (2 heures)
-      var duration =10 * 1000;
+      var duration = {{ $Heurs }} *60*60 * 1000;
 
       // Vérifier si la date de fin est déjà stockée dans le stockage local
       var countDownDate = localStorage.getItem("countDownDate");
@@ -224,6 +232,7 @@ button:hover .button-text {
           localStorage.removeItem("countDownDate");
           var buttonElement = document.querySelector(".learn-more");
       buttonElement.disabled = true;
+      buttonElement.style.display='none';
       window.scrollTo(0, 0);
         }
       }, 1000);
