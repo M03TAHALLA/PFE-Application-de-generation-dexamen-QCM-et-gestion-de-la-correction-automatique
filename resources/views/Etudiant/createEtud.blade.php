@@ -31,6 +31,11 @@
           <div class="cut"></div>
           <label for="Prenom" class="placeholder">Prenom</label>
         </div>
+        <div class="input-container ic3">
+          <input id="lastname" class="input" name="Email" type="email" placeholder=" " />
+          <div class="cut"></div>
+          <label for="Email" class="placeholder">Email</label>
+        </div>
         <button type="text" class="submit">submit</button>
       </div>
       <input hidden id="firstname" class="input" name="idqcm" value="{{ $id }}" type="text" placeholder=" " />

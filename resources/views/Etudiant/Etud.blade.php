@@ -33,13 +33,14 @@
    
     <h2>Etudiant's <small>De Votre Qcm</small></h2>
    
-    <ul id="names" class="responsive-table">
+    <ul id="names"  class="responsive-table">
       <thead>
       <li class="table-header collection-header">
        <tr><div class="col col-1">Matricule Etudinat</div></tr> 
        <tr><div class="col col-2">Nom </div></tr> 
-       <tr><div class="col col-3">Prenom </div></tr> 
-       <tr><div class="col col-4"></div></tr> 
+       <tr><div class="col col-3">Prenom </div></tr>
+       <tr><div style="margin-left:-5%" class="col col-4">Email </div></tr>  
+       <tr><div class="col col-5"></div></tr> 
       </li>
     </thead>
     <tbody>
@@ -49,6 +50,7 @@
         <div class="col col-1" data-label="Matricule" >{{ $etudiant->Matricule }}</div>
         <div class="col col-2" data-label="Nom" style="text-transform: uppercase;">{{$etudiant->Nom }}</div>
         <div class="col col-3" data-label="Prenom" style="text-transform: uppercase;">{{$etudiant->Prenom }}</div>
+        <div class="col col-3" data-label="Email">{{$etudiant->Email }}</div>
         <div class="col col-4" data-label="">
         <form action={{ route('etudiant.destroy',$etudiant->id) }}  method="post">
             @csrf

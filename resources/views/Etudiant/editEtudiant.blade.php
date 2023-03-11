@@ -47,6 +47,16 @@
           <div class="cut"></div>
           <label for="Prenom" class="placeholder">Prenom</label>
         </div>
+        <div class="input-container ic3">
+          <input id="lastname" class="input" name="Email" value="{{ $etudiant->Email }}" type="email" placeholder=" " />
+          <div class="error">
+            @error ('Email')
+                {{ $message }}
+            @enderror
+        </div>
+          <div class="cut"></div>
+          <label for="Prenom" class="placeholder">Prenom</label>
+        </div>
         <button type="text" class="submit">submit</button>
       </div>
       <input hidden id="firstname" class="input" name="idqcm" value="{{ $etudiant->idEtud }}" type="text" placeholder=" " />

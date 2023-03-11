@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
 use App\Models\Qcmliste;
+use App\Notifications\SendEmailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use TCPDF;
@@ -988,12 +990,14 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $request->validate([
             'Matricule'=>'required',
             'Nom'=>'required',
-            'Prenom'=>['required']
+            'Prenom'=>['required'],
+            'Email'=>'required'
         ]);
         $etudiant = new Etudiant();
         $etudiant->Matricule = $request->input('Matricule');
         $etudiant->Nom = $request->input('Nom');
         $etudiant->Prenom = $request->input('Prenom');
+        $etudiant->Email = $request->input('Email');
         $etudiant->idEtud = $request->input('idqcm');
         $etudiant->save();
         return Redirect()->route('etudiant.show',$request->input('idqcm'));
@@ -1010,8 +1014,8 @@ for($i=1; $i<= $nombreQustion ;$i++){
     {
         $etudiant = Etudiant::select('*')->distinct()->get();
         $duplicates = DB::table('etudiants')
-            ->select('Nom', 'Prenom','Matricule', DB::raw('count(*) as total'))
-            ->groupBy('Nom', 'Prenom','Matricule')
+            ->select('Nom', 'Prenom','Matricule','Email', DB::raw('count(*) as total'))
+            ->groupBy('Nom', 'Prenom','Matricule','Email')
             ->havingRaw('count(*) > 1')
             ->get();
         foreach ($duplicates as $duplicate) {
@@ -1019,6 +1023,7 @@ for($i=1; $i<= $nombreQustion ;$i++){
                 ->where('Nom', $duplicate->Nom)
                 ->where('Prenom', $duplicate->Prenom)
                 ->where('Matricule', $duplicate->Prenom)
+                ->where('Email', $duplicate->Email)
                 ->limit($duplicate->total - 1)
                 ->delete();
         }
@@ -1034,6 +1039,29 @@ for($i=1; $i<= $nombreQustion ;$i++){
             'id'=>$id
         ]);
     }
+
+    public function emailView($id){
+        $data = Etudiant::find($id);
+        return view('Etudiant.SendEmail',compact('data'));
+
+    }
+
+    public function storeSingleEmail(Request $request,$id){
+
+        $etudiant = Etudiant::find($id);
+
+
+
+        $details = array();
+        $details['greeting']= $request->input('greeting');
+        $details['body']= $request->input('body');
+        $details['actiontext']= $request->input('actiontext');
+        $details['actionurl']= $request->input('actionurl');
+        $details['endtext']= $request->input('endtext');
+
+        Notification::send($etudiant,new SendEmailNotification($details));
+
+     }
 
     /**
      * Show the form for editing the specified resource.
@@ -1062,12 +1090,14 @@ for($i=1; $i<= $nombreQustion ;$i++){
         $request->validate([
             'Matricule'=>'required',
             'Nom'=>'required',
-            'Prenom'=>['required']
+            'Prenom'=>['required'],
+            'Email'=>'required'
         ]);
         $UpdateEtud = Etudiant::findOrFail($id);
         $UpdateEtud->Matricule = $request->input('Matricule');
         $UpdateEtud->Nom = $request->input('Nom');
         $UpdateEtud->Prenom = $request->input('Prenom');
+        $UpdateEtud->Email = $request->input('Email');
         $UpdateEtud->idEtud = $request->input('idqcm');
         $UpdateEtud->save();
         return Redirect()->route('etudiant.show',$request->input('idqcm'));
