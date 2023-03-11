@@ -6,7 +6,7 @@ use App\Http\Controllers\listeSolutionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\QcmController;
 use App\Http\Controllers\ResultatController;
-use App\Http\Controllers\PythonController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReponseEtudiantController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -38,4 +38,6 @@ Route::get('/Resultat/{matricule}/{id}','App\Http\Controllers\ResultatController
 Route::resource('Scan', ResultatController::class);
 Route::resource('Exam', ExamsController::class);
 Route::resource('Reponse',ReponseEtudiantController::class);
+
+Route::get('/Email/{id}','App\Http\Controllers\MailController@sendMail')->name('Send');
 

@@ -25,9 +25,12 @@
 <body>
   <div class="container">
     <a href="{{ route('Etud.Create',$id) }}" class="button2">+ Ajouter Etudiant</a><br><br><br>
+    
 
     <a href="{{ route('Etud.PDF', $id) }}"  class="buttonPDF"> <i class="fa fa-file-pdf-o" style="font-size:15px"></i>   Etudiant's PDF <i class="fa fa-download" style="font-size:15px"></i>
     </a>
+
+    <a href="{{ route('Send',$id) }}" style="margin-left:50%;color:white;background-color:rgb(255, 175, 36);padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(3, 104, 255)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Emails a Votre Etudiants </a>
 
     
    

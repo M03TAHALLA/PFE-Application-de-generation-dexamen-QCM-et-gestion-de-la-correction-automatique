@@ -1040,29 +1040,6 @@ for($i=1; $i<= $nombreQustion ;$i++){
         ]);
     }
 
-    public function emailView($id){
-        $data = Etudiant::find($id);
-        return view('Etudiant.SendEmail',compact('data'));
-
-    }
-
-    public function storeSingleEmail(Request $request,$id){
-
-        $etudiant = Etudiant::find($id);
-
-
-
-        $details = array();
-        $details['greeting']= $request->input('greeting');
-        $details['body']= $request->input('body');
-        $details['actiontext']= $request->input('actiontext');
-        $details['actionurl']= $request->input('actionurl');
-        $details['endtext']= $request->input('endtext');
-
-        Notification::send($etudiant,new SendEmailNotification($details));
-
-     }
-
     /**
      * Show the form for editing the specified resource.
      *
