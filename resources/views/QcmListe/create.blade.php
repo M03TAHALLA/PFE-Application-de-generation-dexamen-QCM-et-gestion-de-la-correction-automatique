@@ -16,7 +16,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/Qcmlistecss/create.css">
-
+    <script type="text/javascript">
+        window.addEventListener('beforeunload',()=>{
+            event.preventDefault();
+            event.returnValue = "";
+        })
+        </script>
 </head>
 <body>
  <form action="{{ route('Qcmliste.store') }}" method="POST" class="requires-validation">
@@ -32,8 +37,8 @@
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold" type="text" name="Numquestion" required> <i class="fa fa-envelope-o"></i> <label>Nombre Question</label> </div>
                     <div class="input-text-signup">  <input class="form-control"  style="font-weight:bold" type="text" name="Matiere"   required><i class="fa fa-eye-slash"></i><label>Matiere</label></div>
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold" type="text" name="libelle"  required><i class="fa fa-user"></i> <label>Ecole</label> </div>
-                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam"  value="<?php echo rand(0, 15545223265474884); ?>" required><i class="fa fa-user"></i> <label>Code</label> </div>
-                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;width:30%;display: inline;" type="number" name="Heurs"  required><i class="fa fa-user"></i><label>Heurs Exam</label> heurs</div>
+                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam"  value="<?php echo rand(0, 155452232654); ?>" required><i class="fa fa-user"></i> <label>Code</label> </div>
+                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;width:30%;" type="number" name="Heurs"  required><i class="fa fa-user"></i><label>Heurs Exam</label> heurs</div>
 
                     <br>
                     <br>
@@ -54,6 +59,8 @@
 
         </div>
 </form>
+
 </body>
+
 </html>
 @endsection

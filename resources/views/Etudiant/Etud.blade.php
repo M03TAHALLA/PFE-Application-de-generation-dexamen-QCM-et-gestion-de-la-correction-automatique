@@ -29,10 +29,11 @@
 
     <a href="{{ route('Etud.PDF', $id) }}"  class="buttonPDF"> <i class="fa fa-file-pdf-o" style="font-size:15px"></i>   Etudiant's PDF <i class="fa fa-download" style="font-size:15px"></i>
     </a>
+    @if($nombreEtudiant > 0)
 
-    <a href="{{ route('Send',$id) }}" style="margin-left:50%;color:white;background-color:rgb(255, 175, 36);padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(3, 104, 255)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Emails a Votre Etudiants </a>
+    <a href="{{ route('Send',$id) }}" style="margin-left:50%;color:white;background-color:rgb(255, 175, 36);padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(3, 104, 255)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Emails a Votre Etudiants (<span style="color: red">{{ $nombreEtudiant }}</span>)</a>
 
-    
+    @endif
    
     <h2>Etudiant's <small>De Votre Qcm</small></h2>
    
@@ -42,7 +43,7 @@
        <tr><div class="col col-1">Matricule Etudinat</div></tr> 
        <tr><div class="col col-2">Nom </div></tr> 
        <tr><div class="col col-3">Prenom </div></tr>
-       <tr><div style="margin-left:-5%" class="col col-4">Email </div></tr>  
+       <tr><div style="margin-left:-5%" class="col col-4">Email</div></tr>  
        <tr><div class="col col-5"></div></tr> 
       </li>
     </thead>

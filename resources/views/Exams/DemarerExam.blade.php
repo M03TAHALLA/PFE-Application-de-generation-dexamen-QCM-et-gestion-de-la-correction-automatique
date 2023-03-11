@@ -192,56 +192,58 @@ button:hover .button-text {
     <form>
   </body>
 </html>
-    <script>
-      // Définir la durée du compte à rebours en millisecondes (2 heures)
-      var duration = {{ $Heurs }} *60*60 * 1000;
+<script>
+  // Définir la durée du compte à rebours en millisecondes (2 heures)
+  var duration = {{ $Heurs }} * 60 * 60 * 1000;
 
-      // Vérifier si la date de fin est déjà stockée dans le stockage local
-      var countDownDate = localStorage.getItem("countDownDate");
+  // Vérifier si le temps restant est déjà stocké dans le stockage local
+  var remainingTime = localStorage.getItem("remainingTime");
 
-      // Si la date de fin n'est pas stockée, calculer la date de fin à partir de maintenant
-      if (!countDownDate) {
-        countDownDate = new Date().getTime() + duration;
-        localStorage.setItem("countDownDate", countDownDate);
-      }
+  // Si le temps restant n'est pas stocké, initialiser avec la durée totale
+  if (!remainingTime) {
+    remainingTime = duration;
+  }
 
-      // Mettre à jour le compte à rebours toutes les secondes
-      var countdown = setInterval(function() {
+  // Mettre à jour le compte à rebours toutes les secondes
+  var countdown = setInterval(function() {
+    // Décrémenter le temps restant de 1 seconde
+    remainingTime -= 1000;
 
-        // Obtenir la date et l'heure actuelles
-        var now = new Date().getTime();
+    // Calculer les heures, minutes et secondes restantes
+    var hours = Math.floor(remainingTime / (1000 * 60 * 60));
+    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-        // Calculer la distance entre la date de fin et la date actuelle
-        var distance = countDownDate - now;
+    // Afficher le temps restant sur la page
+    var timerElement = document.getElementById("timer");
+    timerElement.textContent = hours + "h " + minutes + "m " + seconds + "s ";
 
-        // Calculer les heures, minutes et secondes restantes
-        var hours = Math.floor(distance / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Arrêter le compte à rebours une fois qu'il est terminé
+    if (remainingTime <= 0) {
+      clearInterval(countdown);
+      timerElement.textContent = "EXPIRÉ";
 
-        // Afficher le temps restant sur la page
-        var timerElement = document.getElementById("timer");
-        timerElement.textContent = hours + "h " + minutes + "m " + seconds + "s ";
+      // Supprimer le temps restant du stockage local
+      localStorage.removeItem("remainingTime");
 
-        // Arrêter le compte à rebours une fois qu'il est terminé
-        if (distance < 0) {
-          clearInterval(countdown);
-          timerElement.textContent = "EXPIRÉ";
-
-          // Supprimer la date de fin du stockage local
-          localStorage.removeItem("countDownDate");
-          var buttonElement = document.querySelector(".learn-more");
+      // Désactiver le bouton et le masquer
+      var buttonElement = document.querySelector(".learn-more");
       buttonElement.disabled = true;
-      buttonElement.style.display='none';
+      buttonElement.style.display = 'none';
       window.scrollTo(0, 0);
-        }
-      }, 1000);
+    } else {
+      // Stocker le temps restant dans le stockage local
+      localStorage.setItem("remainingTime", remainingTime);
+    }
+  }, 1000);
 
-      // Réinitialiser le compte à rebours lorsqu'on actualise la page
-      window.addEventListener("beforeunload", function(event) {
-        localStorage.removeItem("countDownDate");
-      });
-    </script>
+  // Réinitialiser le compte à rebours lorsqu'on actualise la page
+  window.addEventListener("beforeunload", function(event) {
+    localStorage.setItem("remainingTime", remainingTime);
+  });
+</script>
+
+
   </body>
 </html>
 

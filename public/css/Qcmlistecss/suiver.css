@@ -42,7 +42,7 @@
    
    
    .cssbuttons-io-button:hover .icon {
-    width: calc(80% - 0.6em);
+    width: calc(70% - 0.6em);
     text-align: center;
 
    }

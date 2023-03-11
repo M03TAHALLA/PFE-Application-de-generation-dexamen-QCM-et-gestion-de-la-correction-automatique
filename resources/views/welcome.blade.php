@@ -33,7 +33,7 @@
         </video>
         <div class="content">
     <h1>Easy<span>QCM<span></h1>
-        <p><span>Welcome</span> to  <span>EasyQCM</span> (Quiz Application) ! We are excited that you have chosen to participate in our quizzes and tests. Our goal is to provide you with a fun and engaging way to test your knowledge and improve your skills. We have a wide variety of quizzes in different subjects and difficulty levels</p>
+        <p style="width: 70%;text-align:center;margin-left:15%;font-size:20px"><span>Bienvenue</span> sur  <span>EasyQCM</span> , une plateforme de quiz en ligne qui permet aux <span>Enseignants</span> de créer et gérer des quiz, et aux <span>Etudiants</span> de répondre à des quiz et de suivre leur progression.</p>
             <a  class="button" style="width: 20%;margin-right:10%;"  href="{{ route('home') }}"> <img style="width: 30%;height:30%;color:white" src="/images/Enseignant.png">Enseignant</a>
             <a  class="button" style="width: 20%;"  href="{{ route('Exam.create') }}"> <img style="width: 30%;height:30%;color:white" src="/images/Etudiant.png">Etudiant</a>
         

@@ -1027,11 +1027,11 @@ for($i=1; $i<= $nombreQustion ;$i++){
                 ->limit($duplicate->total - 1)
                 ->delete();
         }
-        $NombreEtudiant = Etudiant::count();
+        $nombreEtudiant = Etudiant::where('idEtud', $id)->count();
         return view('Etudiant.Etud',[
             'etudiant'=>$etudiant,
-            'NombreEtudiant'=>$NombreEtudiant,
             'id'=>$id,
+            'nombreEtudiant'=>$nombreEtudiant
         ]);
     }
     public function createEtudiant($id){

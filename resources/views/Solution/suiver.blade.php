@@ -131,48 +131,123 @@ $result = $connect->query($query);
 					  </tr>
 					</thead>
 					<tbody>
-						@for($i=1;$i <= $listeqcm->NbrQuestion ; $i++)
+	@if($solutions->count()>0)
+						<?php $i=1 ?>
+						@foreach ($solutions as $solutions)
 						<tr>
 							<td data-label="Qustion"><div class="content">{{ $i }}</div></td>
 							<td data-label="1"><div class="content">
+								@if($solutions->A == 1)
 								<label class="checkBox">
-								  <input id="ch1" name="A{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }}  type="checkbox">
-								  <div class="transition"></div></label>
+								  <input id="ch1" name="A{{$i}}" value="1" checked {{ old('is_active') ? 'checked' : '' }}  type="checkbox">
+								  <div class="transition"></div></label> 
+								  @else 
+								  @if($solutions->A == 0)
+								  <label class="checkBox">
+									<input id="ch1" name="A{{$i}}" value="1"  {{ old('is_active') ? 'checked' : '' }}  type="checkbox">
+									<div class="transition"></div></label>
+								  @endif
+								  @endif
 							</td>
-							<td data-label="2"><label class="checkBox">
+							<td data-label="2">
+								@if($solutions->B == 1)
+								<label class="checkBox">
+								<input id="ch1" name="B{{$i}}" value="1" checked {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+								<div class="transition"></div></label>
+								@else
+									@if($solutions->B == 0)
+									<label class="checkBox">
+										<input id="ch1" name="B{{$i}}" value="1"  {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+										<div class="transition"></div></label>
+										@endif
+								@endif
+							</td>
+							<td data-label="3">
+								@if($solutions->C == 1)
+								<label class="checkBox">
+								<input id="ch1" name="C{{$i}}" checked value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+								<div class="transition"></div></label>
+								@else
+								@if($solutions->C == 0)
+								<label class="checkBox">
+									<input id="ch1" name="C{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+									<div class="transition"></div></label>
+									@endif
+								@endif
+							</td>
+							<td data-label="4">
+								@if($solutions->D == 1)
+								<label class="checkBox">
+								<input id="ch1" name="D{{$i}}" checked value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+								<div class="transition"></div></label>
+								@else
+								@if($solutions->D == 0)
+								<label class="checkBox">
+									<input id="ch1" name="D{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+									<div class="transition"></div></label>
+									@endif
+								@endif	
+							</td>
+							<td data-label="5">
+								@if($solutions->E == 1)
+								<label class="checkBox">
+								<input id="ch1" name="E{{$i}}" checked value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+								<div class="transition"></div></label>
+								@else
+								@if($solutions->E == 0)
+								<label class="checkBox">
+									<input id="ch1" name="E{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
+									<div class="transition"></div></label>
+									@endif
+								@endif	
+							</td>
+						  </tr>
+						  <?php $i=$i+1 ?>
+						  @endforeach()
+						  <center>
+						  <a href="{{ route('etudiant.show', $listeqcm->id) }}" style="color: rgb(255, 255, 255);font-weight:bold;margin-bottom: 3%;background-color:red"  class="cssbuttons-io-button"> Votre Etudiant's
+							
+							<div class="icon">
+							  <svg height="24" width="24"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+							</div>
+						  </a>
+						</center>
+	@else
+						@for($i=1;$i <= $listeqcm->NbrQuestion ; $i++)
+						<tr>
+							<td data-label="Name"><div class="content">{{ $i }}</div></td>
+							<td data-label="Name"><div class="content">
+								<label class="checkBox">
+								<input id="ch1" name="A{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }}  type="checkbox">
+								<div class="transition"></div></label>
+							</td>
+							<td data-label="Title"><label class="checkBox">
 								<input id="ch1" name="B{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-							<td data-label="3"><label class="checkBox">
+							<td data-label="Website"><label class="checkBox">
 								<input id="ch1" name="C{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-							<td data-label="4"><label class="checkBox">
+							<td data-label="Role"><label class="checkBox">
 								<input id="ch1" name="D{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-							<td data-label="5"><label class="checkBox">
+							<td data-label="Role"><label class="checkBox">
 								<input id="ch1" name="E{{$i}}" value="1" {{ old('is_active') ? 'checked' : '' }} type="checkbox">
 								<div class="transition"></div></label>
 							</td>
-						  </tr>
-						  @endfor
+						</tr>
+					
+						@endfor			  
+	@endif
 					</tbody>
 				  </table>
 				  <center>
 				  <button style="margin-top: 5%"  type="submit">STORE</button>
-				  @if (session()->has('success'))
-				  <a href="{{ route('etudiant.show', $listeqcm->id) }}" style="color: rgb(255, 255, 255);font-weight:bold"  class="cssbuttons-io-button"> Etudiant's
-					
-					<div class="icon">
-					  <svg height="24" width="24"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
-					</div>
-				  </a>
-				  @endif
 				</center>
 			</div>
 			<form>
-				
 		</article>
 		<script src="/css/Qcmlistecss/suiver.js"></script>
 	</div>

@@ -71,8 +71,11 @@ if ($count > 0) {
                 $solution[$i][$j]->save();
             }
         }
+
+        $solutions = Solution::where('qcmliste_id', $request->idqcm)->get();
         return redirect()->back()->with([
             'success' => 'La solution Ajouteés',
+            'solutions'=> $solutions
         ]);
         }
     /**
@@ -83,7 +86,9 @@ if ($count > 0) {
      */
     public function show($qcmliste)
     {
+        $solutions = Solution::where('qcmliste_id', $qcmliste)->get();
         return view('Solution.suiver', [
+            'solutions'=>$solutions,
             'listeqcm'=>Qcmliste::findOrFail($qcmliste),
         ]);
     }
