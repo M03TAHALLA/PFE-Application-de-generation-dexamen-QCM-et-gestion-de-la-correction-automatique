@@ -124,6 +124,7 @@ class ResultatController extends Controller
             }
         }
 
+      
 
         $ResultatExam = array();
         $NoteFinale = 0;

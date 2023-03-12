@@ -23,15 +23,30 @@
   <link rel="stylesheet" href="/css/Etudiants/Etudiant.css">
 </head>
 <body>
+  @if(session('success'))
+    <div class="alert alert-success" id="success-message">
+        {{ session('success') }}
+    </div>
+    <script>
+      setTimeout(function() {
+          var successMessage = document.getElementById('success-message');
+          successMessage.classList.add('remove');
+          setTimeout(function() {
+              successMessage.remove();
+          }, 1000); // remove after 1 second
+      }, 2000); // remove after 3 seconds
+  </script>
+@endif
   <div class="container">
     <a href="{{ route('Etud.Create',$id) }}" class="button2">+ Ajouter Etudiant</a><br><br><br>
     
 
     <a href="{{ route('Etud.PDF', $id) }}"  class="buttonPDF"> <i class="fa fa-file-pdf-o" style="font-size:15px"></i>   Etudiant's PDF <i class="fa fa-download" style="font-size:15px"></i>
-    </a>
+    </a><br><br><br>
     @if($nombreEtudiant > 0)
 
-    <a href="{{ route('Send',$id) }}" style="margin-left:50%;color:white;background-color:rgb(255, 175, 36);padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(3, 104, 255)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Emails a Votre Etudiants (<span style="color: red">{{ $nombreEtudiant }}</span>)</a>
+    <a href="{{ route('Send',$id) }}" style="color:white;background-color:rgb(255, 175, 36);padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(255, 175, 36)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Emails a Votre Etudiants (<span style="color: red">{{ $nombreEtudiant }}</span>)</a>
+    <a href="{{ route('Result',$CodeExam) }}" style="margin-left:30%;color:white;background-color:rgb(39, 120, 14);padding:10px;transition: background-color 1s ease, color 0.3s ease; font-size:15px"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(39, 120, 14)';"onmouseout="this.style.backgroundColor='rgb(39, 120, 14)'; this.style.color='white';" class="button3"><i class='fa fa-battery-full' style='font-size:24px;margin-right:9px'> </i>Resultat Exam de (<span style="color:red">{{ $nombreEtudiantExam }}</span>) Etudiant's</a>
 
     @endif
    
@@ -40,7 +55,7 @@
     <ul id="names"  class="responsive-table">
       <thead>
       <li class="table-header collection-header">
-       <tr><div class="col col-1">Matricule Etudinat</div></tr> 
+       <tr><div class="col col-1">Matricule Etudiant</div></tr> 
        <tr><div class="col col-2">Nom </div></tr> 
        <tr><div class="col col-3">Prenom </div></tr>
        <tr><div style="margin-left:-5%" class="col col-4">Email</div></tr>  
@@ -61,7 +76,7 @@
             @method('DELETE')
             <button class="button">Delete</button>
             <a href="{{ route('etudiant.edit',$etudiant->id) }}"   class="button2">Modifier</a>
-            <a class="button3">Suiver</a>
+            <a class="button3">Suiver </a>
         </form>
           </div>
       </li>

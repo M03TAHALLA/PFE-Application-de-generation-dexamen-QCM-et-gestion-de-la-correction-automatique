@@ -53,7 +53,7 @@ class ReponseEtudiantController extends Controller
             }
         }
         return view('welcome',[
-            'success'=>'Attendez Votre Notes Dans Votre Email'
+            'success'=>"Votre Note D'évaluation sera envoyée par e-mail. Merci."
         ]);
     }
 

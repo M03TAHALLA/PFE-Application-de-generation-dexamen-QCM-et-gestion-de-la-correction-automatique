@@ -16,12 +16,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/Qcmlistecss/create.css">
-    <script type="text/javascript">
-        window.addEventListener('beforeunload',()=>{
-            event.preventDefault();
-            event.returnValue = "";
-        })
-        </script>
 </head>
 <body>
  <form action="{{ route('Qcmliste.store') }}" method="POST" class="requires-validation">

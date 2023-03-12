@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
+use App\Models\Exam;
 use App\Models\Qcmliste;
 use App\Notifications\SendEmailNotification;
 use Illuminate\Http\Request;
@@ -1027,11 +1028,15 @@ for($i=1; $i<= $nombreQustion ;$i++){
                 ->limit($duplicate->total - 1)
                 ->delete();
         }
+        $CodeExam = Qcmliste::where('id', $id)->value('CodeExam');
         $nombreEtudiant = Etudiant::where('idEtud', $id)->count();
+        $nombreEtudiantExam = Exam::where('Code_Exam', $CodeExam)->count();
         return view('Etudiant.Etud',[
             'etudiant'=>$etudiant,
             'id'=>$id,
-            'nombreEtudiant'=>$nombreEtudiant
+            'nombreEtudiant'=>$nombreEtudiant,
+            'CodeExam'=>$CodeExam,
+            'nombreEtudiantExam'=>$nombreEtudiantExam
         ]);
     }
     public function createEtudiant($id){

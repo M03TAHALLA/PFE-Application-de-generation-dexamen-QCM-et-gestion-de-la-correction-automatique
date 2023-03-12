@@ -41,3 +41,9 @@ Route::resource('Reponse',ReponseEtudiantController::class);
 
 Route::get('/Email/{id}','App\Http\Controllers\MailController@sendMail')->name('Send');
 
+Route::get('/Resultat/{CodeExam}','App\Http\Controllers\ExamsController@ResultatExam')->name('Result');
+
+Route::get('/ResultEtudiant/{Matricule}','App\Http\Controllers\ExamsController@ResultatEtudiant')->name('ResultatEtudiant');
+
+
+
