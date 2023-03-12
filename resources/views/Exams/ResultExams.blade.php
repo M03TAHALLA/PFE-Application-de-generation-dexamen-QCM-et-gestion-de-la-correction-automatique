@@ -53,6 +53,7 @@ cursor: pointer;
             </tr>
         </thead>
         <tbody>
+            <?php $i=0 ?>
             @foreach($Etudiants as $Etudiants)
             <tr>
                 <td>{{ $Etudiants->Matricule }}</td>
@@ -60,14 +61,13 @@ cursor: pointer;
                 <td>{{ $Etudiants->Nom }}</td>
                 <td>{{ $Etudiants->Prenom }}</td>
                 <td>{{ $Etudiants->created_at }}</td>
-                <td>17</td>
+                <td>{{ $notesFinale[$i] }}/{{ $NombreQuestion }}</td>
                 <td> <a href="{{route('ResultatEtudiant',$Etudiants->Matricule) }}" class="button3">Suiver </a></td>
             </tr>
+            <?php $i++ ?>
             @endforeach
         </tbody>
-    </table>
-
-    
+    </table>    
    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
    <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>

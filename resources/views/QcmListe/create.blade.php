@@ -31,7 +31,7 @@
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold" type="text" name="Numquestion" required> <i class="fa fa-envelope-o"></i> <label>Nombre Question</label> </div>
                     <div class="input-text-signup">  <input class="form-control"  style="font-weight:bold" type="text" name="Matiere"   required><i class="fa fa-eye-slash"></i><label>Matiere</label></div>
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold" type="text" name="libelle"  required><i class="fa fa-user"></i> <label>Ecole</label> </div>
-                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam"  value="<?php echo rand(0, 155452232654); ?>" required><i class="fa fa-user"></i> <label>Code</label> </div>
+                    <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" name="CodeExam"  value="<?php echo rand(0, 1554522326); ?>" required><i class="fa fa-user"></i> <label>Code</label> </div>
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;width:30%;" type="number" name="Heurs"  required><i class="fa fa-user"></i><label>Heurs Exam</label> heurs</div>
 
                     <br>

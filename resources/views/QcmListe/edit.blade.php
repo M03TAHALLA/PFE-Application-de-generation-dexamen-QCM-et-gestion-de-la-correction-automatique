@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/Qcmlistecss/edit.css">
+    <link rel="stylesheet" href="/css/Qcmlistecss/create.css">
 
 </head>
 <body>
@@ -34,7 +34,7 @@
                     <div class="input-text-signup">  <input class="form-control" type="text"  style="font-weight:bold" name="Matiere" value="{{ $listeqcm->matiere }}"   required><i class="fa fa-eye-slash"></i><label>Matiere</label></div>
                     <div class="input-text-signup"><input class="form-control" type="text"  style="font-weight:bold" name="libelle" value="{{ $listeqcm->libelle }}"  required><i class="fa fa-user"></i> <label>Ecole</label> </div>
                     <div class="input-text-signup"><input class="form-control"  style="font-weight:bold;cursor:not-allowed"  type="text" disabled name="CodeExam" value="{{ $listeqcm->CodeExam }}"  required><i class="fa fa-user"></i> <label>Code</label> </div>
-                    <div class="input-text-signup"><input class="form-control w-100"  style="font-weight:bold;"  type="number" name="Heurs" value="{{ $listeqcm->Heurs }}"  required></div>
+                    <div class="input-text-signup"><input class="form-control w-100"  style="font-weight:bold;width:30%;"  type="number" name="Heurs" value="{{ $listeqcm->Heurs }}"  required></div>
                     <br>
                     <br>
                     <h4>Notation</h4>

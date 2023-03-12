@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
 use App\Models\Exam;
+use App\Models\NoteEtud;
 use App\Models\Qcmliste;
 use App\Models\Reponse;
 use App\Models\ReponseEtud;
@@ -91,8 +92,96 @@ class ExamsController extends Controller
             ->where('Code_Exam', '=', $id)
             ->select('*')
             ->get();
+
+            $Matricules = DB::table('exams')
+            ->where('Code_Exam', '=', $id)
+            ->pluck('Matricule');
+
+            $idqcm = Qcmliste::where('CodeExam',$id)->value('id');
+
+            $NombreQuestion = Qcmliste::where('CodeExam',$id)->value('NbrQuestion');
+
+            $Sivrai =QcmListe::where('id', $idqcm)->value('Point');
+            $SiFaux =QcmListe::where('id', $idqcm)->value('PointF');
+            $SansReponse =QcmListe::where('id', $idqcm)->value('PointN');
+    for($i=0 ; $i<count($Matricules);$i++){
+        if (!NoteEtud::where('Matricule', $Matricules[$i])->exists()) {
+            $ReponseEtudiant = Reponse::select('*')->where('Matricule','=',$Matricules[$i])->get(); 
+            $SolutionExam = array();
+            $connect = new PDO("mysql:host=localhost;dbname=qcmdb", "root", "");
+            $query = "SELECT * FROM solutions WHERE qcmliste_id=$idqcm ORDER BY id  ASC";
+            $result = $connect->query($query);
+            foreach($result as $row){
+                if($row['A']==1){
+                    array_push($SolutionExam, 1);
+                }
+                if($row['B']==1){
+                    array_push($SolutionExam, 2);
+                }
+                if($row['C']==1){
+                    array_push($SolutionExam, 3);
+                }
+                if($row['D']==1){
+                    array_push($SolutionExam, 4);
+                }
+                if($row['E']==1){
+                    array_push($SolutionExam, 5);
+                }
+            }
+            $ReponseEtudiant = array();
+            $Mat = $Matricules[$i];
+            $query = "SELECT * FROM reponses WHERE Matricule=$Mat";
+            $result = $connect->query($query);
+            foreach($result as $row){
+                if($row['A']==1){
+                    array_push($ReponseEtudiant, 1);
+                }
+                if($row['B']==1){
+                    array_push($ReponseEtudiant, 2);
+                }
+                if($row['C']==1){
+                    array_push($ReponseEtudiant, 3);
+                }
+                if($row['D']==1){
+                    array_push($ReponseEtudiant, 4);
+                }
+                if($row['E']==1){
+                    array_push($ReponseEtudiant, 5);
+                }
+            }
+            $NoteFinale = array();
+            $NoteFinale1 = 0;
+            $NoteFinale2 = 0;
+            for ($j = 0; $j < count($SolutionExam); $j++) {
+        if ($ReponseEtudiant[$j] == $SolutionExam[$j]) {
+            $NoteFinale1 = $NoteFinale1 +  $Sivrai ;
+            continue;
+        }
+        if($ReponseEtudiant[$j] != $SolutionExam[$j]){
+            $NoteFinale2 = $NoteFinale2 +  $SiFaux ; 
+        }
+    }
+        $NoteFinale[$i]  = $NoteFinale1 + $NoteFinale2;
+
+        
+
+        $Note[$i] = new NoteEtud();
+
+        $Note[$i]->Matricule = $Matricules[$i];
+        $Note[$i]->NoteFinale = $NoteFinale[$i];
+
+        $Note[$i]->save();
+        }
+    }
+
+    $notesFinale = NoteEtud::whereIn('Matricule', $Matricules)->pluck('NoteFinale');
+
         return view('Exams.ResultExams',[
             'Etudiants'=>$Etudiants,
+            'Matricules'=>$Matricules,
+            'idqcm'=>$idqcm,
+            'notesFinale'=>$notesFinale,
+            'NombreQuestion'=>$NombreQuestion
         ]);
     }
 

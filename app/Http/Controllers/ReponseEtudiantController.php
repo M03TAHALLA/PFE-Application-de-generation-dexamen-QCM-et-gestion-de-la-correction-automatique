@@ -52,6 +52,8 @@ class ReponseEtudiantController extends Controller
                 $Reponse[$i][$j]->save();
             }
         }
+
+        
         return view('welcome',[
             'success'=>"Votre Note D'évaluation sera envoyée par e-mail. Merci."
         ]);
