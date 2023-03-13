@@ -97,6 +97,11 @@ class ExamsController extends Controller
             ->where('Code_Exam', '=', $id)
             ->pluck('Matricule');
 
+            $Emails = DB::table('etudiants')
+                ->join('exams', 'etudiants.Matricule', '=', 'exams.Matricule')
+                ->whereIn('exams.Matricule', $Matricules)
+                ->pluck('etudiants.Email');
+
             $idqcm = Qcmliste::where('CodeExam',$id)->value('id');
 
             $NombreQuestion = Qcmliste::where('CodeExam',$id)->value('NbrQuestion');
@@ -175,13 +180,14 @@ class ExamsController extends Controller
     }
 
     $notesFinale = NoteEtud::whereIn('Matricule', $Matricules)->pluck('NoteFinale');
-
         return view('Exams.ResultExams',[
             'Etudiants'=>$Etudiants,
             'Matricules'=>$Matricules,
             'idqcm'=>$idqcm,
             'notesFinale'=>$notesFinale,
-            'NombreQuestion'=>$NombreQuestion
+            'NombreQuestion'=>$NombreQuestion,
+            'Emails'=>$Emails,
+            'CodeExam'=>$id
         ]);
     }
 
@@ -190,12 +196,21 @@ class ExamsController extends Controller
         $CodeExam = Exam::where('Matricule', $id)->value('Code_Exam');
         $idqcm = Qcmliste::where('CodeExam',$CodeExam)->value('id');
 
+        $Nom = Exam::where('Matricule', $id)->value('Nom');
+
+        $Prenom = Exam::where('Matricule', $id)->value('Prenom');
+
+
+
         $Sivrai =QcmListe::where('id', $idqcm)->value('Point');
         $SiFaux =QcmListe::where('id', $idqcm)->value('PointF');
         $SansReponse =QcmListe::where('id', $idqcm)->value('PointN');
 
         $solution = solution::select('*')->where('qcmliste_id','=',$idqcm)->get();
         $ReponseEtudiant = Reponse::select('*')->where('Matricule','=',$id)->get();
+
+        $ReponseEtudiantSol = Reponse::select('*')->where('Matricule','=',$id)->get();
+
         $SolutionExam = array();
         $connect = new PDO("mysql:host=localhost;dbname=qcmdb", "root", "");
         $query = "SELECT * FROM solutions WHERE qcmliste_id=$idqcm ORDER BY id  ASC";
@@ -261,7 +276,11 @@ class ExamsController extends Controller
             'ReponseEtudiant'=>$ReponseEtudiant,
             'SolutionExam'=>$SolutionExam,
             'ResultatExam'=>$ResultatExam,
-            'NoteFinale'=>$NoteFinale
+            'NoteFinale'=>$NoteFinale,
+            'Nom'=>$Nom ,
+            'Prenom'=>$Prenom,
+            'Matricule'=>$id,
+            'ReponseEtudiantSol'=>$ReponseEtudiantSol
         ]);
     }
     /**

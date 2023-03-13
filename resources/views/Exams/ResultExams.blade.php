@@ -37,9 +37,12 @@ color: green;
 cursor: pointer;
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1> Resultat Etudiant </h1>
+    <h1 style="margin-bottom: 3%"> Resultat Etudiant </h1>
+    <a href="{{ route('sendNotes',$CodeExam) }}" style="color:white;background-color:rgb(255, 175, 36);margin-left:35%;margin-bottom:10%;padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(255, 175, 36)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Les Notes Finale a Votre Etudiants (<span style="color: red;font-weight:bold">{{ count($Etudiants) }}</span>)</a>
+
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
