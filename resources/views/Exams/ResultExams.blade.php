@@ -19,27 +19,25 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css"> 
     
-<style>
-     .button3{
-border: 2px solid black ;
-height: 10px;
-text-decoration: none;
-background-color: green;
-color: white;
-transition: 0.5s;
-border-radius: 3px;
-padding: 3px;
-cursor: pointer;
-}
-.button3:hover{
-background-color: rgb(255, 255, 255);
-color: green;
-cursor: pointer;
-}
-</style>
+   <link rel="stylesheet" href="/css/Exams/ResultatExam.css">
+   
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    @if(session('success'))
+    <div class="alert alert-success" id="success-message">
+        {{ session('success') }}
+    </div>
+    <script>
+      setTimeout(function() {
+          var successMessage = document.getElementById('success-message');
+          successMessage.classList.add('remove');
+          setTimeout(function() {
+              successMessage.remove();
+          }, 1000); // remove after 1 second
+      }, 2000); // remove after 3 seconds
+  </script>
+@endif
     <h1 style="margin-bottom: 3%"> Resultat Etudiant </h1>
     <a href="{{ route('sendNotes',$CodeExam) }}" style="color:white;background-color:rgb(255, 175, 36);margin-left:35%;margin-bottom:10%;padding:10px;transition: background-color 1s ease, color 0.3s ease;"  onmouseover="this.style.backgroundColor='rgb(255, 255, 255)'; this.style.color='rgb(255, 175, 36)';"onmouseout="this.style.backgroundColor='rgb(255, 175, 36)'; this.style.color='white';" class="button3"><i class="fa fa-envelope" style="font-size:20px"></i> Envoyer Les Notes Finale a Votre Etudiants (<span style="color: red;font-weight:bold">{{ count($Etudiants) }}</span>)</a>
 

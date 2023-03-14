@@ -61,6 +61,8 @@ class ExamsController extends Controller
         $Exam->save();
         return view('Exams.AffichageExam',[
             'Matricule'=>  $request->input('Matricule'),
+            'Nom'=>$request->input('Nom'),
+            'Prenom'=>$request->input('Prenom')
         ]);
     }
 

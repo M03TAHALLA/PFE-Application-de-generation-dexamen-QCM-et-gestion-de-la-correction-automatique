@@ -36,7 +36,7 @@ class MailController extends Controller
         for($i=0;$i < count($Mails);$i++){
         Mail::to($Mails[$i])->send(new MailEtudiant($Nom[$i],$Prenom[$i],$Matricule[$i],$CodeExam,$EmailEnseignant));
         }
-        return redirect()->back()->with('success', 'Emails Envoyé Avec success');
+        return redirect()->back()->with('success', 'Emails Demande Envoyé Avec success');
     }
 
     public function sendNotes($id){
@@ -75,6 +75,6 @@ class MailController extends Controller
         for($i=0;$i < count($Emails);$i++){
         Mail::to($Emails[$i])->send(new MailNoteEtudiant($Nom[$i],$Prenom[$i],$Matricules[$i],$Note[$i],$NombreQuestion,$EmailEnseignant,$name));
         }
-        return redirect()->back()->with('success', 'Emails Envoyé Avec success');
+        return redirect()->back()->with('success', 'les Notes Envoyé Avec success');
     }
 }

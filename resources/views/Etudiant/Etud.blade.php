@@ -76,7 +76,6 @@
             @method('DELETE')
             <button class="button">Delete</button>
             <a href="{{ route('etudiant.edit',$etudiant->id) }}"   class="button2">Modifier</a>
-            <a class="button3">Suiver </a>
         </form>
           </div>
       </li>

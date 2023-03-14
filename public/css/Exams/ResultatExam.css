@@ -1,0 +1,27 @@
+
+.button3{
+    border: 2px solid black ;
+    height: 10px;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+    border-radius: 3px;
+    padding: 3px;
+    cursor: pointer;
+    }
+    .button3:hover{
+    background-color: rgb(255, 255, 255);
+    color: green;
+    cursor: pointer;
+    }
+
+    #success-message.remove {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      #success-message {
+        width: 20%;
+        margin-left:40%;
+        text-align: center;
+      }

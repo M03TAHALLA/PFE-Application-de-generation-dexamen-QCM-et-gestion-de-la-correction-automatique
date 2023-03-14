@@ -994,6 +994,9 @@ for($i=1; $i<= $nombreQustion ;$i++){
             'Prenom'=>['required'],
             'Email'=>'required'
         ]);
+        if(Etudiant::where('Matricule',  $request->input('Matricule'))->exists()){
+            return redirect()->back()->with('message', "Matricule Déja Exist");
+        }
         $etudiant = new Etudiant();
         $etudiant->Matricule = $request->input('Matricule');
         $etudiant->Nom = $request->input('Nom');

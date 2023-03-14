@@ -21,6 +21,9 @@
             <div class="cut"></div>
             <label for="Matricule" class="placeholder">Matricule  </label>
           </div>
+          @if (session('message'))
+				<p  style="color:rgb(89, 255, 0);font-size:14px;margin: 0px;margin-right: 60px;font-weight:bold">{{ session('message') }}</p>
+			@endif
         <div class="input-container ic2">
           <input id="firstname" class="input" name="Nom" type="text" placeholder=" " />
           <div class="cut"></div>
